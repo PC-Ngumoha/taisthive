@@ -1,0 +1,14 @@
+{
+  "name": "taisthive",
+  "version": "1.0.0",
+  "description": "A simple app that allows users to share their culinary interests",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "PC-Ngumoha",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
