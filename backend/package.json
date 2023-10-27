@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "NODE_ENV=development nodemon app.js",
+    "build": "NODE_ENV=production node app.js"
   },
   "author": "PC-Ngumoha",
   "license": "MIT",
