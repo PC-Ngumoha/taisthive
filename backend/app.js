@@ -159,7 +159,7 @@ app.post('/user', async (req, res) => {
     const user = await User.create(data);
     res.status(201).send({user});
   } catch (err) {
-    res.status(401).send({error: err.message});
+    res.status(500).send({error: 'Something went wrong'});
   }
 });
 
@@ -173,9 +173,9 @@ app.put('/user/:id', async (req, res) => {
         id
       }
     });
-    res.status(200).send({message: 'User account updated successfully'});
+    res.status(200).send({message: 'Successfully updated'});
   } catch (err) {
-    res.status(500).send({message: err.message});
+    res.status(500).send({message: 'Something went wrong'});
   }
 });
 
@@ -188,9 +188,9 @@ app.delete('/user/:id', async (req, res) => {
         id
       }
     });
-    res.status(200).send({message: 'User account deleted successfully'});
+    res.status(200).send({message: 'Successfully deleted'});
   } catch (err) {
-    res.status(500).send();
+    res.status(500).send({message: 'Something went wrong'});
   }
 });
 
@@ -208,7 +208,7 @@ app.get('/user/:id', async (req, res) => {
     }
     res.status(200).send({user});
   } catch (err) {
-    res.status(500).send({error: err.message});
+    res.status(500).send({error: 'Something went wrong'});
   }
 });
 
@@ -230,18 +230,41 @@ app.post('/recipe/:user_id', async (req, res) => {
     await author.addRecipe(recipe);
     res.status(200).send({recipe});
   } catch (err) {
-    res.status(500).send({message: err.message});
+    res.status(500).send({message: 'Something went wrong'});
   }
 }); 
 
 // PUT /recipe/:id -> update a particular recipe
 app.put('/recipe/:id', async (req, res) => {
-
+  const data = req.body;
+  const id = req.params.id;
+  try {
+    const recipe = await Recipe.update(data, {
+      where: {
+        id
+      }
+    });
+    if (recipe === 0) return res.status(404).send({message:'Updated Nothing'});
+    res.status(200).send({message: 'Successfully updated'});
+  } catch (err) {
+    res.status(500).send({message: 'Something went wrong'});
+  }
 });
 
 // DELETE /recipe/:id -> Delete a particular recipe
 app.delete('/recipe/:id', async (req, res) => {
-
+  const id = req.params.id;
+  try {
+    const recipe = await Recipe.destroy({
+      where: {
+        id
+      }
+    });
+    if (recipe === 0) return res.status(404).send({message:'Deleted Nothing'});
+    res.status(200).send({message: 'Successfully deleted'});
+  } catch (err) {
+    res.status(500).send({message: 'Something went wrong'});
+  }
 });
 
 // GET /recipe/:user_id -> Get all recipes created by a given user
@@ -259,13 +282,26 @@ app.get('/recipe/user/:user_id', async (req, res) => {
     const recipes = await author.getRecipes();
     res.status(200).send({recipes});
   } catch (err) {
-    res.status(500).send({message: 'We could not get the recipes for this user'});
+    res.status(500).send({message: 'Something went wrong'});
   }
 });
 
 // GET /recipe/:id -> Get a particular recipe 
 app.get('/recipe/:id', async (req, res) => {
-
+  const id = req.params.id;
+  try {
+    const recipe = await Recipe.findOne({
+      where: {
+        id
+      }
+    });
+    if (recipe === null) {
+      return res.status(404).send({message: 'Recipe not found'});
+    }
+    res.status(200).send({recipe});
+  } catch (err) {
+    res.status(500).send({message: 'Something went wrong'});
+  }
 });
 
 app.listen(3000, () => {
