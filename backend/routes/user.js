@@ -16,6 +16,7 @@ router.post('/user', async (req, res) => {
     res.status(201).send({user});
   } catch (err) {
     res.status(500).send({error: 'Something went wrong'});
+    // console.log(err);
   }
 });
 

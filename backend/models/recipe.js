@@ -31,12 +31,20 @@ const Recipe = db.define('recipe', {
   createdAt: {
     type: DataTypes.DATE,
     allowNull: false,
-    defaultValue: DataTypes.NOW
+    defaultValue: DataTypes.NOW,
+    get() {
+      const createdAt = new Date(this.getDataValue('createdAt'));
+      return createdAt.toDateString();
+    }
   },
   updatedAt: {
     type: DataTypes.DATE,
     allowNull: false,
-    defaultValue: DataTypes.NOW
+    defaultValue: DataTypes.NOW,
+    get() {
+      const updatedAt = new Date(this.getDataValue('updatedAt'));
+      return updatedAt.toDateString();
+    }
   }
 });
 

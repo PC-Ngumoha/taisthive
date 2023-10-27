@@ -8,7 +8,7 @@ const {Sequelize} = require('sequelize');
 
 const _ = process.env;
 const db = new Sequelize(
-  `${_.DB_DIALECT}://${_.DB_USER}:${_.DB_PASS}@${_.DB_HOST}/${_.DB_NAME}`
+  `${_.DB_DIALECT}://${_.DB_USER}:${_.DB_PASS}@${_.DB_HOST}/${_.DB_NAME}`,
 );
 
 module.exports = db;
