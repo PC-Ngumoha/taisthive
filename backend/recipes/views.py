@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404
 from recipes.models import Recipe
 from recipes.serializers import RecipeSerializers
 from rest_framework import status
@@ -21,22 +22,33 @@ class CreateListRecipeView(APIView):
         serializer = self.serializer_class(data=data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.validated_data,
+            return Response({"message": "Recipe Successfully Added"},
                             status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class RetrieveUpdateDeleteRecipeView(APIView):
     """Retrieve, update and delete a particular recipe by user request."""
+    serializer_class = RecipeSerializers
 
     def get(self, request, id):
         """GET - retrieves a particular recipe instance"""
-        pass
+        recipe = get_object_or_404(Recipe, id=id)
+        serializer = self.serializer_class(recipe)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request, id):
         """PUT - updates the details of a recipe"""
-        pass
+        recipe = get_object_or_404(Recipe, id=id)
+        serializer = self.serializer_class(recipe, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"message": "Recipe Successfully Updated"},
+                            status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, id):
         """DELETE - deletes a particular recipe"""
-        pass
+        recipe = get_object_or_404(Recipe, id=id)
+        recipe.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
