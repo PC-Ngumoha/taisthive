@@ -40,6 +40,10 @@ class TestCreateListRecipeView(TestHelperTestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Recipe.objects.all().count(), recipe_count + 1)
 
+    def test_should_return_400_response_when_no_data_is_passed(self):
+        response = self.client.post(reverse("recipes"), data={})
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
     def test_should_be_able_to_list_all_recipes_available(self):
         recipe_count = Recipe.objects.all().count()
 
@@ -91,6 +95,19 @@ class TestRetrieveUpdateDeleteRecipeView(TestHelperTestCase):
         self.assertEqual(get_response.status_code, status.HTTP_200_OK)
         self.assertEqual(get_response.data.get(
             "name"), modified_payload.get("name"))
+
+    def test_should_return_400_response_when_no_data_is_passed(self):
+        post_response = self.send_create_recipe_request()
+        self.assertEqual(post_response.status_code, status.HTTP_201_CREATED)
+
+        recipe_id = self.retrieve_new_recipe_id
+        get_response = self.send_list_or_retrieve_recipe_request(recipe_id)
+
+        put_response = self.client.put(
+            reverse("recipe", kwargs={'id': recipe_id}),
+            data={},
+            format="json")
+        self.assertEqual(put_response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_should_be_able_to_delete_a_particular_recipe(self):
         post_response = self.send_create_recipe_request()
