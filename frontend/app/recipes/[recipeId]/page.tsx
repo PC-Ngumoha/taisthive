@@ -46,7 +46,7 @@ const RecipePage = ({ params }: { params: { recipeId: number } }) => {
           className="text-brown-100 md:w-[150px] w-[30%] mx-2">
           <FontAwesomeIcon
             icon={faTrash}
-            className="fas fa-pen-to-square"
+            className="fas fa-pen-to-square "
           />
         </Button>
       </div>

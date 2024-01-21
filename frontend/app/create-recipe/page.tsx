@@ -49,7 +49,7 @@ const CreateRecipePage = () => {
         <div className="my-5">
           <Label className="text-lg" htmlFor="desc">Description:</Label>
           <Input
-            placeholder="introduce your recipe"
+            placeholder="tell me more about your recipe"
             id="desc"
             type="text"
             value={description}
@@ -65,7 +65,7 @@ const CreateRecipePage = () => {
                   <div className="m-2 flex justify-between" key={index}>
                     <Input
                       type="text"
-                      placeholder="Add ingredient"
+                      placeholder={`Ingredient #${index + 1}`}
                       value={ingredient}
                       onChange={
                         (evt) => {
@@ -107,7 +107,7 @@ const CreateRecipePage = () => {
                   <div className="m-2 flex justify-between" key={index}>
                     <Input
                       type="text"
-                      placeholder="Write instruction"
+                      placeholder={`Step #${index + 1}`}
                       value={ingredient}
                       onChange={
                         (evt) => {
