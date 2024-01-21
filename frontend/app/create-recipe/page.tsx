@@ -1,17 +1,40 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { createRecipe } from "@/utils";
+import { RecipeDataType } from "@/types";
 
 const CreateRecipePage = () => {
+  const router = useRouter();
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
 
   const [ingredientFields, setIngredientFields] = useState<Array<string>>(['']);
   const [instructionFields, setInstructionFields] = useState<Array<string>>(['']);
+
+  const handleSubmit = async (evt: any) => {
+    try {
+      evt.preventDefault();
+      const payload: RecipeDataType = {
+        name: title,
+        description: description,
+        ingredients: ingredientFields,
+        instructions: instructionFields
+      };
+      const response = await createRecipe(payload);
+      if (response.status === 201) {
+        console.log('Recipe Created Successfully');
+        router.push('/recipes');
+      }
+    } catch (error) {
+      console.log('Error: ', error);
+    }
+  };
 
   const handleChange = (index: number, value: string, field: Array<string>, setter: (param: Array<string>) => void) => {
     const newField: Array<string> = [...field];
@@ -30,7 +53,7 @@ const CreateRecipePage = () => {
   };
 
   return (
-    <form className="m-5 p-5 flex flex-col" action="" onSubmit={() => null}>
+    <form className="m-5 p-5 flex flex-col" action="" onSubmit={handleSubmit}>
       <div className="flex flex-row justify-between align-middle">
         <h1 className="lg:text-xl text-base font-bold lg:ml-10 ml-3 self-center">Create new recipe</h1>
         <Button className="lg:mr-10 mr-3 w-28 bg-brown-100" type="submit">Save</Button>

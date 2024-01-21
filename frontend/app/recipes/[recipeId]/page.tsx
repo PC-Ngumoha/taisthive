@@ -1,34 +1,63 @@
+"use client";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "@/components/ui/button";
+import { getRecipe } from "@/utils";
+import { RecipeResponseDataType } from "@/types";
 
 const RecipePage = ({ params }: { params: { recipeId: number } }) => {
+  const [recipe, setRecipe] = useState<RecipeResponseDataType>({
+    id: 0,
+    name: '',
+    description: '',
+    ingredients: [''],
+    instructions: [''],
+  });
+
+  useEffect(() => {
+    const fetchRecipe = async () => {
+      try {
+        const response = await getRecipe(params.recipeId);
+        if (response.status === 200) {
+          setRecipe(response.data);
+        }
+      } catch (error) {
+        console.log("Error: ", error);
+      }
+    };
+
+    fetchRecipe();
+  }, [params.recipeId]);
+
   return (
     <main className="p-7">
-      <h1 className="text-3xl font-bold font-serif">Recipe Title</h1>
+      <h1 className="text-3xl font-bold font-serif">{recipe.name}</h1>
       <div className="my-4">
-        <p className="text-sm italic font-sans leading-6 tracking-wide">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat perferendis accusantium distinctio blanditiis, quasi dolores dolore ea nisi repellendus laborum vitae molestias voluptatibus odit nemo sequi ad ipsa nobis odio.</p>
+        <p className="text-sm italic font-sans leading-6 tracking-wide">{recipe.description}</p>
       </div>
       <div className="my-4">
         <h2 className="text-lg font-bold font-serif">Ingredients:</h2>
         <ul className="text-sm font-serif px-5" style={{ listStyleType: 'disc' }}>
-          <li>Ingredient #1</li>
-          <li>Ingredient #2</li>
-          <li>Ingredient #3</li>
-          <li>Ingredient #4</li>
-          <li>Ingredient #5</li>
-          <li>Ingredient #6</li>
+          {
+            recipe.ingredients.map((ingredient: string, index: number) => {
+              return (
+                <li key={index}>{ingredient}</li>
+              );
+            })
+          }
         </ul>
       </div>
       <div className="my-4">
         <h2 className="text-lg font-bold font-serif">Instructions:</h2>
         <ul className="text-sm font-serif px-5" style={{ listStyleType: 'disc' }}>
-          <li>Step #1</li>
-          <li>Step #2</li>
-          <li>Step #3</li>
-          <li>Step #4</li>
-          <li>Step #5</li>
-          <li>Step #6</li>
+          {
+            recipe.instructions.map((instruction: string, index: number) => {
+              return (
+                <li key={index}>{instruction}</li>
+              );
+            })
+          }
         </ul>
       </div>
       <div className="my-4 flex justify-center">
