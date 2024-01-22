@@ -6,12 +6,14 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useToast } from "@/components/ui/use-toast";
 import { createRecipe, getRecipe, updateRecipe } from "@/utils";
 import { RecipeDataType, RecipeResponseDataType } from "@/types";
 
 const CreateRecipePage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { toast } = useToast();
 
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
@@ -22,8 +24,8 @@ const CreateRecipePage = () => {
   useEffect(() => {
     const fetchRecipe = async () => {
       if (searchParams.has('recipeId')) {
+        const recipeId = parseInt(searchParams.get('recipeId')!);
         try {
-          const recipeId = parseInt(searchParams.get('recipeId')!);
           const response = await getRecipe(recipeId)
           if (response.status === 200) {
             const {
@@ -35,14 +37,18 @@ const CreateRecipePage = () => {
             setInstructionFields(instructions);
           }
         } catch (error) {
-          console.log('Error: ', error);
-          throw error;
+          // console.log('Error: ', error);
+          toast({
+            title: 'Error:',
+            description: `Unable to retrieve for recipe with ID: ${recipeId}`,
+            variant: 'destructive'
+          });
         }
       }
     };
 
     fetchRecipe();
-  }, [searchParams]);
+  }, [searchParams, toast]);
 
   const handleSubmit = async (evt: any) => {
     try {
@@ -58,18 +64,31 @@ const CreateRecipePage = () => {
         const recipeId = parseInt(searchParams.get('recipeId')!);
         response = await updateRecipe(recipeId, payload);
         if (response.status === 200) {
-          console.log('Recipe Updated Successfully');
+          // console.log('');
+          toast({
+            title: 'Success:',
+            description: 'Recipe Updated Successfully'
+          })
           router.replace('/recipes');
         }
       } else {
         response = await createRecipe(payload);
         if (response.status === 201) {
-          console.log('Recipe Created Successfully');
+          // console.log('Recipe Created Successfully');
+          toast({
+            title: 'Success:',
+            description: 'Recipe Created Successfully'
+          })
           router.replace('/recipes');
         }
       }
     } catch (error) {
-      console.log('Error: ', error);
+      // console.log('Error: ', error);
+      toast({
+        title: 'Error:',
+        description: 'Unable to save recipe',
+        variant: 'destructive'
+      })
     }
   };
 
@@ -99,7 +118,7 @@ const CreateRecipePage = () => {
         <div className="my-5">
           <Label className="text-lg" htmlFor="recipe-title">Recipe Title:</Label>
           <Input
-            placeholder="what do we call it?"
+            placeholder="what do you want to call it?"
             id="recipe-title"
             type="text"
             value={title}

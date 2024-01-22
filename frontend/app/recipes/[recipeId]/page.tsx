@@ -7,9 +7,11 @@ import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { getRecipe, deleteRecipe } from "@/utils";
 import { RecipeResponseDataType } from "@/types";
+import { useToast } from "@/components/ui/use-toast";
 
 const RecipePage = ({ params }: { params: { recipeId: number } }) => {
   const router = useRouter();
+  const { toast } = useToast();
   const [recipe, setRecipe] = useState<RecipeResponseDataType>({
     id: 0,
     name: '',
@@ -26,12 +28,17 @@ const RecipePage = ({ params }: { params: { recipeId: number } }) => {
           setRecipe(response.data);
         }
       } catch (error) {
-        console.log("Error: ", error);
+        // console.log("Error: ", error);
+        toast({
+          title: 'Error:',
+          description: `Unable to retrieve recipe with ID: `,
+          variant: 'destructive',
+        });
       }
     };
 
     fetchRecipe();
-  }, [params.recipeId]);
+  }, [params.recipeId, toast]);
 
   return (
     <main className="p-7">
@@ -86,11 +93,18 @@ const RecipePage = ({ params }: { params: { recipeId: number } }) => {
             try {
               const response = await deleteRecipe(params.recipeId);
               if (response.status === 204) {
-                console.log('Recipe Deleted Successfully');
+                toast({
+                  title: 'Success:',
+                  description: 'Recipe Deleted Successfully',
+                });
                 router.replace('/recipes');
               }
             } catch (error) {
-              console.log('Error: ', error);
+              toast({
+                title: 'Error:',
+                description: 'Unable to delete successfully',
+                variant: 'destructive',
+              });
             }
           }}>
           <FontAwesomeIcon

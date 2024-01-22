@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { buttonVariants } from '@/components/ui/button';
+import { useToast } from '@/components/ui/use-toast';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { getAllRecipes } from '@/utils';
@@ -12,6 +13,7 @@ import { RecipeResponseDataType } from '@/types';
 
 
 const RecipesPage = () => {
+  const { toast } = useToast();
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
@@ -22,12 +24,16 @@ const RecipesPage = () => {
           setRecipes(response.data);
         }
       } catch (error) {
-        console.log("Error: ", error);
+        toast({
+          title: 'Error:',
+          description: 'Unable to list all available recipes',
+          variant: 'destructive',
+        });
       }
     };
 
     fetchRecipes();
-  }, []);
+  }, [toast]);
 
   return (
     <div className="grid md:grid-cols-3 gap-4 p-7">
