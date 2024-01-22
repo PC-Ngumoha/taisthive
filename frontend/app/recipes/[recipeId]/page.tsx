@@ -1,12 +1,15 @@
 "use client";
 import { useState, useEffect } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { Button } from "@/components/ui/button";
-import { getRecipe } from "@/utils";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { getRecipe, deleteRecipe } from "@/utils";
 import { RecipeResponseDataType } from "@/types";
 
 const RecipePage = ({ params }: { params: { recipeId: number } }) => {
+  const router = useRouter();
   const [recipe, setRecipe] = useState<RecipeResponseDataType>({
     id: 0,
     name: '',
@@ -61,18 +64,35 @@ const RecipePage = ({ params }: { params: { recipeId: number } }) => {
         </ul>
       </div>
       <div className="my-4 flex justify-center">
-        <Button
-          variant="ghost"
-          className="bg-brown-50 text-brown-100 md:w-[150px] w-[30%] mx-2">
+        <Link
+          className={`${buttonVariants({ variant: 'ghost' })} bg-brown-50 text-brown-100 md:w-[150px] w-[30%] mx-2`}
+          href={{
+            pathname: '/create-recipe',
+            query: {
+              recipeId: params.recipeId
+            }
+          }}>
           <FontAwesomeIcon
             icon={faPenToSquare}
             className="fas fa-pen-to-square"
           />
-        </Button>
+        </Link>
 
         <Button
           variant="outline"
-          className="text-brown-100 md:w-[150px] w-[30%] mx-2">
+          className="text-brown-100 md:w-[150px] w-[30%] mx-2"
+          onClick={async (evt) => {
+            evt.preventDefault();
+            try {
+              const response = await deleteRecipe(params.recipeId);
+              if (response.status === 204) {
+                console.log('Recipe Deleted Successfully');
+                router.replace('/recipes');
+              }
+            } catch (error) {
+              console.log('Error: ', error);
+            }
+          }}>
           <FontAwesomeIcon
             icon={faTrash}
             className="fas fa-pen-to-square "

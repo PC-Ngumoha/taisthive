@@ -38,7 +38,7 @@ export const createRecipe = async (data: RecipeDataType) => {
 
 export const updateRecipe = async (id: number, data: RecipeDataType) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}/api/recipes/${id}/`, data);
+    const response = await axios.put(`${API_BASE_URL}/api/recipes/${id}/`, data);
     return response;
   } catch (err) {
     console.log(err);
