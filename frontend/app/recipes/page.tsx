@@ -8,10 +8,6 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { getAllRecipes } from '@/utils';
 import { RecipeResponseDataType } from '@/types';
 
-// Importing fontawesome css
-// import '../../node_modules/@fortawesome/fontawesome-svg-core/styles.css';
-
-
 const RecipesPage = () => {
   const { toast } = useToast();
   const [recipes, setRecipes] = useState([]);

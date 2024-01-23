@@ -8,6 +8,7 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { getRecipe, deleteRecipe } from "@/utils";
 import { RecipeResponseDataType } from "@/types";
 import { useToast } from "@/components/ui/use-toast";
+import ItemsList from "@/components/custom/item-list";
 
 const RecipePage = ({ params }: { params: { recipeId: number } }) => {
   const router = useRouter();
@@ -28,7 +29,6 @@ const RecipePage = ({ params }: { params: { recipeId: number } }) => {
           setRecipe(response.data);
         }
       } catch (error) {
-        // console.log("Error: ", error);
         toast({
           title: 'Error:',
           description: `Unable to retrieve recipe with ID: `,
@@ -40,6 +40,26 @@ const RecipePage = ({ params }: { params: { recipeId: number } }) => {
     fetchRecipe();
   }, [params.recipeId, toast]);
 
+  const handleDelete = async (evt: any) => {
+    evt.preventDefault();
+    try {
+      const response = await deleteRecipe(params.recipeId);
+      if (response.status === 204) {
+        toast({
+          title: 'Success:',
+          description: 'Recipe Deleted Successfully',
+        });
+        router.replace('/recipes');
+      }
+    } catch (error) {
+      toast({
+        title: 'Error:',
+        description: 'Unable to delete successfully',
+        variant: 'destructive',
+      });
+    }
+  }
+
   return (
     <main className="p-7">
       <h1 className="text-3xl font-bold font-serif">{recipe.name}</h1>
@@ -49,25 +69,13 @@ const RecipePage = ({ params }: { params: { recipeId: number } }) => {
       <div className="my-4">
         <h2 className="text-lg font-bold font-serif">Ingredients:</h2>
         <ul className="text-sm font-serif px-5" style={{ listStyleType: 'disc' }}>
-          {
-            recipe.ingredients.map((ingredient: string, index: number) => {
-              return (
-                <li key={index}>{ingredient}</li>
-              );
-            })
-          }
+          <ItemsList items={recipe.ingredients} />
         </ul>
       </div>
       <div className="my-4">
         <h2 className="text-lg font-bold font-serif">Instructions:</h2>
         <ul className="text-sm font-serif px-5" style={{ listStyleType: 'disc' }}>
-          {
-            recipe.instructions.map((instruction: string, index: number) => {
-              return (
-                <li key={index}>{instruction}</li>
-              );
-            })
-          }
+          <ItemsList items={recipe.instructions} />
         </ul>
       </div>
       <div className="my-4 flex justify-center">
@@ -88,25 +96,7 @@ const RecipePage = ({ params }: { params: { recipeId: number } }) => {
         <Button
           variant="outline"
           className="text-brown-100 md:w-[150px] w-[30%] mx-2"
-          onClick={async (evt) => {
-            evt.preventDefault();
-            try {
-              const response = await deleteRecipe(params.recipeId);
-              if (response.status === 204) {
-                toast({
-                  title: 'Success:',
-                  description: 'Recipe Deleted Successfully',
-                });
-                router.replace('/recipes');
-              }
-            } catch (error) {
-              toast({
-                title: 'Error:',
-                description: 'Unable to delete successfully',
-                variant: 'destructive',
-              });
-            }
-          }}>
+          onClick={handleDelete}>
           <FontAwesomeIcon
             icon={faTrash}
             className="fas fa-pen-to-square "
