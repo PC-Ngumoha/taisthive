@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     # Local (Custom) packages.
     'recipes.apps.RecipesConfig',
+    'authentication.apps.AuthenticationConfig',
 ]
 
 MIDDLEWARE = [
