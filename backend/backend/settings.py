@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = "authentication.CustomUser"
 
 # Application definition
 
@@ -42,8 +43,8 @@ INSTALLED_APPS = [
     'corsheaders',
 
     # Local (Custom) packages.
-    'recipes.apps.RecipesConfig',
-    'authentication.apps.AuthenticationConfig',
+    'recipes',
+    'authentication',
 ]
 
 MIDDLEWARE = [
