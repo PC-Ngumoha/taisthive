@@ -1,7 +1,9 @@
+from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import (
     AbstractBaseUser, BaseUserManager, PermissionsMixin)
 from django.db import models
 from django.utils import timezone
+import uuid
 
 
 class CustomUserManager(BaseUserManager):
@@ -29,11 +31,13 @@ class CustomUserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     """custom user designed for use in creating a new user"""
-    email = models.EmailField(unique=True)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    email = models.EmailField(max_length=100, unique=True)
     password = models.CharField(max_length=60)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
-    date_joined = models.DateTimeField(default=timezone.now)
+    is_superuser = models.BooleanField(default=False)
+    date_joined = models.DateTimeField(auto_now_add=True)
 
     objects = CustomUserManager()
 
