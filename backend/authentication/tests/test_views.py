@@ -1,4 +1,5 @@
-from authentication.models import User
+# from authentication.models import User
+from django.contrib.auth import get_user_model
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
@@ -6,8 +7,10 @@ from rest_framework.test import APITestCase
 
 class TestCreateUserView(APITestCase):
     """test the user create view"""
+    # User = get_user_model()
 
     def test_should_create_new_user_if_all_data_provided(self):
+        User = get_user_model()
         data_payload = {
             "email": "tester6@example.com",
             "password": "testing1234#"
