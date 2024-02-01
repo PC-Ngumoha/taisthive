@@ -63,6 +63,7 @@ class TestCreateListRecipeView(TestHelperTestCase):
 
     def test_should_list_all_recipes_created_by_current_authenticated_user(self):
         self.authenticate()
+        self.send_create_recipe_request()
         response = self.send_list_or_retrieve_recipe_request()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertIsInstance(response.data, list)
