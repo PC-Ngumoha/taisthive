@@ -1,12 +1,6 @@
 'use client';
 import { useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Label } from '@/components/ui/label';
-import { EmailField, PasswordField } from '@/components/custom/form-fields';
-import displayPic from '../../../public/chicken-sauce.jpg'
+import AuthForm from '@/components/custom/auth-form';
 
 const SigninPage = () => {
   const [email, setEmail] = useState<string>('');
@@ -14,52 +8,12 @@ const SigninPage = () => {
   const [confirmPassword, setConfirmPassword] = useState<string>('');
 
   return (
-    <div className=' lg:w-[60%] h-fit flex flex-row justify-center mx-auto my-20 p-4 border-2 border-gray-50 rounded-2xl shadow-lg shadow-gray-200'>
-      <div className='mr-2 hidden lg:block'>
-        <Image
-          src={displayPic}
-          alt='Image displaying a delicious Nigerian dish'
-          className='h-full object-cover' />
-      </div>
-
-      <div className='ml-2 self-start'>
-        <h1 className='w-full text-left text-xl font-bold leading-4 tracking-wide'>Want to join our Family?</h1>
-        <form action="" className='my-6'>
-          <div className='border-2 border-b-[1px] rounded-lg border-gray-100'>
-
-            <EmailField
-              placeholder='Enter email address'
-              email={email}
-              setEmail={setEmail}
-            />
-
-            <PasswordField
-              placeholder='Enter password'
-              password={password}
-              setPassword={setPassword}
-            />
-
-            <PasswordField
-              placeholder='Re-enter password'
-              password={confirmPassword}
-              setPassword={setConfirmPassword}
-            />
-
-          </div>
-
-          <div className='flex space-x-2 my-6'>
-            <Checkbox id='terms' className='data-[state=checked]:bg-brown-100 data-[state=checked]:text-white' />
-            <Label htmlFor='terms' className='text-xs text-gray-400'>
-              I agree to the <Link href='#' className='underline'>terms & policy</Link>
-            </Label>
-          </div>
-
-          <div className='my-3'>
-            <Button className='w-36 bg-brown-100' type='submit'>Sign In</Button>
-          </div>
-        </form>
-      </div>
-    </div >
+    <AuthForm
+      caption='Welcome back'
+      submitCaption='Sign In'
+      fields={[email, password, confirmPassword]}
+      setters={[setEmail, setPassword, setConfirmPassword]}
+    />
   )
 };
 
