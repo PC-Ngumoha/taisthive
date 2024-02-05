@@ -21,7 +21,12 @@ const useAuthStore = create<AuthState>()(
             refreshToken: rtoken
           }
         )),
-        updateAccessToken: (token) => set((state) => ({ ...state, accessToken: token }))
+        updateAccessToken: (token) => set((state) => (
+          {
+            ...state,
+            accessToken: token
+          }
+        ))
       }),
       {
         name: "auth-store"
@@ -29,3 +34,5 @@ const useAuthStore = create<AuthState>()(
     )
   )
 );
+
+export default useAuthStore;
