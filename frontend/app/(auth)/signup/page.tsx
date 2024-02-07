@@ -2,20 +2,62 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
+import { useToast } from '@/components/ui/use-toast';
 import { EmailField, PasswordField } from '@/components/custom/form-fields';
-import displayPic from '../../public/chicken-sauce.jpg';
+import { createUser, loginUser } from '@/utils';
+import displayPic from '../../../public/chicken-sauce.jpg';
 
 const SignupPage = () => {
+  const { toast } = useToast();
+  const router = useRouter();
+
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
 
-  const handleSubmit = (evt: any) => {
+  const handleSubmit = async (evt: any) => {
     evt.preventDefault();
-    console.log({ email, password, confirmPassword });
+    if (confirmPassword === password) {
+      try {
+        let response = await createUser({ email, password });
+        let next = '';
+        if (response.status === 201) {
+          // It Succeeded and now we can proceed to logging in
+          response = await loginUser({ email, password });
+          console.log(response.data); // access & refresh tokens here
+          toast({
+            title: 'Success',
+            description: 'User created successfully'
+          });
+          next = '/';
+        } else {
+          toast({
+            title: 'Error:',
+            description: 'Unable to create new user',
+            variant: 'destructive'
+          });
+          next = '/signup';
+        }
+        router.replace(next);
+      } catch (err) {
+        toast({
+          title: 'Error: ',
+          description: 'Oops!! an unexpected server error occurred',
+          variant: 'destructive'
+        })
+        router.replace('/');
+      }
+    } else {
+      toast({
+        title: 'Error: ',
+        description: 'Passwords provided do not match, try again',
+        variant: 'destructive'
+      })
+    }
   };
 
   return (
@@ -24,6 +66,7 @@ const SignupPage = () => {
         <Image
           src={displayPic}
           alt='Image displaying a delicious Nigerian dish'
+          priority
           className='h-full object-cover' />
       </div>
 

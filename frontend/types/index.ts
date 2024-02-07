@@ -6,6 +6,15 @@ export interface RecipeDataType {
   instructions: Array<string>;
 }
 
+export interface UserDetailsType {
+  email: string;
+  password: string;
+}
+
+export interface UserLoginRefreshType {
+  refresh: string;
+}
+
 
 export interface RecipeResponseDataType extends RecipeDataType {
   id: number;

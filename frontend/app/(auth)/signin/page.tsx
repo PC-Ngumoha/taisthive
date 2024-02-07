@@ -2,20 +2,60 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
+import { useToast } from '@/components/ui/use-toast';
 import { EmailField, PasswordField } from '@/components/custom/form-fields';
+import { loginUser } from '@/utils';
 import displayPic from '../../../public/chicken-sauce.jpg';
 
 const SigninPage = () => {
+  const { toast } = useToast();
+  const router = useRouter();
+
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
 
-  const handleSubmit = (evt: any) => {
+  const handleSubmit = async (evt: any) => {
     evt.preventDefault();
-    console.log({ email, password, confirmPassword });
+    if (confirmPassword === password) {
+      try {
+        const response = await loginUser({ email, password });
+        let next = '';
+        if (response.status === 200) {
+          toast({
+            title: 'Success: ',
+            description: 'User signed in successfully'
+          });
+          console.log(response.data);
+          next = '/';
+        } else {
+          toast({
+            title: 'Error: ',
+            description: 'Improper request. Correct it and try again',
+            variant: 'destructive'
+          });
+          next = '/signin';
+        }
+        router.replace(next);
+      } catch (err) {
+        toast({
+          title: 'Error: ',
+          description: 'Nonexistent email or Invalid password. Try again',
+          variant: 'destructive'
+        });
+        router.replace('/signin');
+      }
+    } else {
+      toast({
+        title: 'Error: ',
+        description: 'Passwords provided do not match',
+        variant: 'destructive'
+      })
+    }
   };
 
   return (
@@ -24,6 +64,7 @@ const SigninPage = () => {
         <Image
           src={displayPic}
           alt='Image displaying a delicious Nigerian dish'
+          priority
           className='h-full object-cover' />
       </div>
 
