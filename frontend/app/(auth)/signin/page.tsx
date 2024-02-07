@@ -8,12 +8,14 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/components/ui/use-toast';
 import { EmailField, PasswordField } from '@/components/custom/form-fields';
-import { loginUser } from '@/utils';
+import { loginUser, status } from '@/utils';
+import useAuthStore from '@/store/use-auth';
 import displayPic from '../../../public/chicken-sauce.jpg';
 
 const SigninPage = () => {
   const { toast } = useToast();
   const router = useRouter();
+  const setAuthTokens = useAuthStore((state) => state.setAuthTokens);
 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -25,12 +27,13 @@ const SigninPage = () => {
       try {
         const response = await loginUser({ email, password });
         let next = '';
-        if (response.status === 200) {
+        if (response.status === status.HTTP_200_OK) {
           toast({
             title: 'Success: ',
             description: 'User signed in successfully'
           });
-          console.log(response.data);
+          const { access, refresh } = response.data;
+          setAuthTokens(access, refresh);
           next = '/';
         } else {
           toast({

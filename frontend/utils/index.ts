@@ -10,6 +10,15 @@ import {
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 
+export const status = {
+  HTTP_200_OK: 200,
+  HTTP_201_CREATED: 201,
+  HTTP_204_NO_CONTENT: 204,
+  HTTP_400_BAD_REQUEST: 400,
+  HTTP_401_UNAUTHORIZED: 401,
+  HTTP_403_FORBIDDEN: 403,
+};
+
 export const getAllRecipes = async () => {
   try {
     const response = await axios.get(

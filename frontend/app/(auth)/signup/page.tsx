@@ -8,12 +8,14 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/components/ui/use-toast';
 import { EmailField, PasswordField } from '@/components/custom/form-fields';
-import { createUser, loginUser } from '@/utils';
+import { createUser, loginUser, status } from '@/utils';
+import useAuthStore from '@/store/use-auth';
 import displayPic from '../../../public/chicken-sauce.jpg';
 
 const SignupPage = () => {
   const { toast } = useToast();
   const router = useRouter();
+  const setAuthTokens = useAuthStore((state) => state.setAuthTokens);
 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -25,10 +27,10 @@ const SignupPage = () => {
       try {
         let response = await createUser({ email, password });
         let next = '';
-        if (response.status === 201) {
-          // It Succeeded and now we can proceed to logging in
+        if (response.status === status.HTTP_201_CREATED) {
           response = await loginUser({ email, password });
-          console.log(response.data); // access & refresh tokens here
+          const { access, refresh } = response.data;
+          setAuthTokens(access, refresh);
           toast({
             title: 'Success',
             description: 'User created successfully'
