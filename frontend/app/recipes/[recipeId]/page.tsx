@@ -34,11 +34,12 @@ const RecipePage = ({ params }: { params: { recipeId: number } }) => {
           description: `Unable to retrieve recipe with ID: `,
           variant: 'destructive',
         });
+        router.replace('/signin');
       }
     };
 
     fetchRecipe();
-  }, [params.recipeId, toast]);
+  }, [params.recipeId, toast, router]);
 
   const handleDelete = async (evt: any) => {
     evt.preventDefault();

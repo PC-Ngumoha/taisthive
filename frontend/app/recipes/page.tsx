@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { buttonVariants } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,6 +11,8 @@ import { RecipeResponseDataType } from '@/types';
 
 const RecipesPage = () => {
   const { toast } = useToast();
+  const router = useRouter();
+
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
@@ -22,14 +25,15 @@ const RecipesPage = () => {
       } catch (error) {
         toast({
           title: 'Error:',
-          description: 'Unable to list all available recipes',
+          description: 'Session has expired. Login Again',
           variant: 'destructive',
         });
+        router.replace('/signin');
       }
     };
 
     fetchRecipes();
-  }, [toast]);
+  }, [toast, router]);
 
   return (
     <div className="grid md:grid-cols-3 gap-4 p-7">

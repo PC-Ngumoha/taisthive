@@ -46,7 +46,7 @@ const CreateRecipePage = () => {
     };
 
     fetchRecipe();
-  }, [searchParams, toast]);
+  }, [searchParams, toast, router]);
 
   const handleSubmit = async (evt: any) => {
     try {
@@ -88,7 +88,11 @@ const CreateRecipePage = () => {
   };
 
   return (
-    <form className="m-5 p-5 flex flex-col" action="" onSubmit={handleSubmit}>
+    <form
+      className="m-5 p-5 flex flex-col"
+      onSubmit={handleSubmit}
+      name="create-recipe"
+    >
       <div className="flex flex-row justify-between align-middle">
         <h1 className="lg:text-xl text-base font-bold lg:ml-10 ml-3 self-center">Create new recipe</h1>
         <Button className="lg:mr-10 mr-3 w-28 bg-brown-100" type="submit">Save</Button>

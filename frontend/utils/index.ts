@@ -26,11 +26,18 @@ const getAccessToken = () => {
   return accessToken;
 };
 
-// const getRefreshToken = () => {
-//   const authStore = JSON.parse(localStorage.getItem('auth-store')!);
-//   const refreshToken = authStore.state.refresh;
-//   return refreshToken;
-// };
+const setAccessToken = (token: string) => {
+  const authStore = JSON.parse(localStorage.getItem('auth-store')!);
+  const newAuthStore = { ...authStore };
+  newAuthStore.state.access = token;
+  localStorage.setItem('auth-store', JSON.stringify(newAuthStore));
+}
+
+const getRefreshToken = () => {
+  const authStore = JSON.parse(localStorage.getItem('auth-store')!);
+  const refreshToken = authStore.state.refresh;
+  return refreshToken;
+};
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -56,7 +63,24 @@ recipeRequest.interceptors.request.use(
 
 recipeRequest.interceptors.response.use(
   (response) => response,
-  async (error) => Promise.reject(error)
+  async (error) => {
+    if (error.response && error.response.status === 401) {
+      try {
+        const refresh = getRefreshToken();
+        const refreshResponse = await axios.post(
+          `${API_BASE_URL}/api/users/login/refresh`,
+          { refresh }
+        );
+        const newAccess = refreshResponse.data.access;
+        setAccessToken(newAccess);
+
+        return recipeRequest(error.config);
+      } catch (err) {
+        return Promise.reject(error);
+      }
+    }
+    return Promise.reject(error);
+  }
 )
 
 const authRequest = axios.create({
