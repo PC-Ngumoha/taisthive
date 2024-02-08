@@ -1,54 +1,35 @@
 "use client";
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { buttonVariants } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
-import useAuthStore from '@/store/use-auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { getAllRecipes, refreshUserLogin } from '@/utils';
+import { getAllRecipes } from '@/utils';
 import { RecipeResponseDataType } from '@/types';
 
 const RecipesPage = () => {
   const { toast } = useToast();
-  const router = useRouter();
   const [recipes, setRecipes] = useState([]);
-  const access = useAuthStore((state) => state.access);
-  const refresh = useAuthStore((state) => state.refresh);
-  const updateAccess = useAuthStore((state) => state.updateAccessToken);
 
   useEffect(() => {
     const fetchRecipes = async () => {
-      let response = null;
       try {
-        response = await getAllRecipes(access);
+        const response = await getAllRecipes();
         if (response.status === 200) {
           setRecipes(response.data);
         }
       } catch (error) {
-        if (response!.status === 401) {
-          try {
-            const response = await refreshUserLogin({ refresh });
-            if (response.status === 200) {
-              const { access } = response.data;
-              console.log(access);
-              updateAccess(access);
-              router.refresh();
-            }
-          } catch (err) {
-            toast({
-              title: 'Error: ',
-              description: 'Session expired, login again',
-            })
-            router.replace('/signin');
-          }
-        }
+        toast({
+          title: 'Error:',
+          description: 'Unable to list all available recipes',
+          variant: 'destructive',
+        });
       }
     };
 
     fetchRecipes();
-  }, [toast, access, router, refresh, updateAccess]);
+  }, [toast]);
 
   return (
     <div className="grid md:grid-cols-3 gap-4 p-7">
