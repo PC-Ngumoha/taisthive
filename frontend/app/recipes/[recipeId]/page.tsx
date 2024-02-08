@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { getRecipe, deleteRecipe } from "@/utils";
+import { getRecipe, deleteRecipe, status } from "@/utils";
 import { RecipeResponseDataType } from "@/types";
 import { useToast } from "@/components/ui/use-toast";
 import ItemsList from "@/components/custom/item-list";
@@ -25,7 +25,7 @@ const RecipePage = ({ params }: { params: { recipeId: number } }) => {
     const fetchRecipe = async () => {
       try {
         const response = await getRecipe(params.recipeId);
-        if (response.status === 200) {
+        if (response.status === status.HTTP_200_OK) {
           setRecipe(response.data);
         }
       } catch (error) {
@@ -45,7 +45,7 @@ const RecipePage = ({ params }: { params: { recipeId: number } }) => {
     evt.preventDefault();
     try {
       const response = await deleteRecipe(params.recipeId);
-      if (response.status === 204) {
+      if (response.status === status.HTTP_204_NO_CONTENT) {
         toast({
           title: 'Success:',
           description: 'Recipe Deleted Successfully',

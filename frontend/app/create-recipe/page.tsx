@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import MultiInput from "@/components/custom/multi-input";
 import { useToast } from "@/components/ui/use-toast";
-import { createRecipe, getRecipe, updateRecipe } from "@/utils";
+import { createRecipe, getRecipe, updateRecipe, status } from "@/utils";
 import { RecipeDataType, RecipeResponseDataType } from "@/types";
 
 const CreateRecipePage = () => {
@@ -26,7 +26,7 @@ const CreateRecipePage = () => {
         const recipeId = parseInt(searchParams.get('recipeId')!);
         try {
           const response = await getRecipe(recipeId)
-          if (response.status === 200) {
+          if (response.status === status.HTTP_200_OK) {
             const {
               name, description, ingredients, instructions
             }: RecipeResponseDataType = response.data;
@@ -61,7 +61,7 @@ const CreateRecipePage = () => {
       if (searchParams.has('recipeId')) {
         const recipeId = parseInt(searchParams.get('recipeId')!);
         response = await updateRecipe(recipeId, payload);
-        if (response.status === 200) {
+        if (response.status === status.HTTP_200_OK) {
           toast({
             title: 'Success:',
             description: 'Recipe Updated Successfully'
@@ -70,7 +70,7 @@ const CreateRecipePage = () => {
         }
       } else {
         response = await createRecipe(payload);
-        if (response.status === 201) {
+        if (response.status === status.HTTP_201_CREATED) {
           toast({
             title: 'Success:',
             description: 'Recipe Created Successfully'

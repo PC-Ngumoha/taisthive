@@ -6,7 +6,7 @@ import { buttonVariants } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { getAllRecipes } from '@/utils';
+import { getAllRecipes, status } from '@/utils';
 import { RecipeResponseDataType } from '@/types';
 
 const RecipesPage = () => {
@@ -19,7 +19,7 @@ const RecipesPage = () => {
     const fetchRecipes = async () => {
       try {
         const response = await getAllRecipes();
-        if (response.status === 200) {
+        if (response.status === status.HTTP_200_OK) {
           setRecipes(response.data);
         }
       } catch (error) {
