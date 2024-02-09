@@ -1,10 +1,14 @@
 "use client";
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useToast } from '@/components/ui/use-toast';
 import RecipeCard from '@/components/custom/recipe-card';
 import { getAllRecipes, status } from '@/utils';
 import { RecipeResponseDataType } from '@/types';
+import { buttonVariants } from '@/components/ui/button';
 
 const RecipesPage = () => {
   const { toast } = useToast();
@@ -43,6 +47,16 @@ const RecipesPage = () => {
           />
         ))
       }
+      <div className='bg-white border-[1px] md:border-0 border-grey-50 rounded-tl-[80px] rounded-tr-[80px] flex justify-center z-10 w-[100vw] md:w-fit h-[20vh] md:h-fit md:bg-transparent fixed bottom-0 place-self-center md:absolute md:bottom-[5%] md:right-[5%]'>
+        <Link
+          href='/create-recipe'
+          className={`${buttonVariants({ variant: "default" })} bg-brown-200 self-center md:rounded-full md:w-14 md:h-14`}>
+          <FontAwesomeIcon
+            icon={faPlus}
+            className='fa-solid fa-plus text-2xl p-5'
+          />
+        </Link>
+      </div>
 
     </div>
   );
