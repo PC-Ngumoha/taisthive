@@ -28,6 +28,9 @@ export default function RootLayout ({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <nav>
+          Navbar goes here.
+        </nav>
         {children}
         <Toaster />
       </body>

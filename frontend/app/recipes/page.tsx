@@ -50,7 +50,8 @@ const RecipesPage = () => {
       <div className='bg-white border-[1px] md:border-0 border-grey-50 rounded-tl-[80px] rounded-tr-[80px] flex justify-center z-10 w-[100vw] md:w-fit h-[20vh] md:h-fit md:bg-transparent fixed bottom-0 place-self-center md:absolute md:bottom-[5%] md:right-[5%]'>
         <Link
           href='/create-recipe'
-          className={`${buttonVariants({ variant: "default" })} bg-brown-200 self-center md:rounded-full md:w-14 md:h-14`}>
+          className={`self-center md:rounded-full md:w-14 md:h-14 ${buttonVariants({ variant: "default" })} `}
+          style={{ backgroundColor: '#B55D51 !important' }}>
           <FontAwesomeIcon
             icon={faPlus}
             className='fa-solid fa-plus text-2xl p-5'
