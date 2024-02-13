@@ -1,6 +1,7 @@
 'use client';
 import { Fragment } from 'react'
-import { borel, shantell_sans } from '@/fonts';
+import Image from 'next/image';
+import { shantell_sans } from '@/fonts';
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -68,14 +69,14 @@ export default function Navbar () {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <button
+                {/* <button
                   type="button"
                   className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                 >
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">View notifications</span>
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
-                </button>
+                </button> */}
 
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
@@ -85,9 +86,14 @@ export default function Navbar () {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        src="https://i.ibb.co/C98rcRx/avatar.png"
                         alt=""
                       />
+                      {/* <Image
+                        src="https://i.ibb.co/C98rcRx/avatar.png"
+                        alt='User avatar'
+                        className="h-8 w-8 rounded-full"
+                      /> */}
                     </Menu.Button>
                   </div>
                   <Transition
