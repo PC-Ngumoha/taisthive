@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { inter } from "@/fonts";
 import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/custom/navbar";
 import "./globals.css";
@@ -13,8 +13,6 @@ import { config } from "@fortawesome/fontawesome-svg-core";
  * fontawesome icons from being rendered too big.
  */
 config.autoAddCss = false;
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
