@@ -6,6 +6,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUtensils } from '@fortawesome/free-solid-svg-icons';
+import { buttonVariants } from '../ui/button';
 
 const navigation = [
   { name: 'Dashboard', href: '#', current: true },
@@ -68,7 +69,18 @@ export default function Navbar () {
                   </div>
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              <div className="relative inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+
+                <div className='text-[9px]'>
+                  <a className={`${buttonVariants({ variant: 'default' })} mr-3 w-12 h-8 lg:w-20 lg:h-fit bg-brown-100 text-white`}>
+                    Sign In
+                  </a>
+
+                  <a className={`${buttonVariants({ variant: 'default' })} mr-3 w-12 h-8 lg:w-20 lg:h-fit bg-gray-100 text-black`}>
+                    Sign Up
+                  </a>
+                </div>
+
                 {/* <button
                   type="button"
                   className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
@@ -79,21 +91,19 @@ export default function Navbar () {
                 </button> */}
 
                 {/* Profile dropdown */}
-                <Menu as="div" className="relative ml-3">
+                <Menu as="div" className="relative ml-3 h-10">
                   <div>
-                    <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <Menu.Button className="relative h-full flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
-                      <img
-                        className="h-8 w-8 rounded-full"
-                        src="https://i.ibb.co/C98rcRx/avatar.png"
-                        alt=""
-                      />
-                      {/* <Image
-                        src="https://i.ibb.co/C98rcRx/avatar.png"
-                        alt='User avatar'
-                        className="h-8 w-8 rounded-full"
-                      /> */}
+                      <div className='h-10 w-10'>
+                        <Image
+                          src="https://i.ibb.co/C98rcRx/avatar.png"
+                          alt='User avatar'
+                          layout='fill'
+                          className='rounded-full'
+                        />
+                      </div>
                     </Menu.Button>
                   </div>
                   <Transition
