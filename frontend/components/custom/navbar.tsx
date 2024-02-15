@@ -71,12 +71,12 @@ export default function Navbar () {
               </div>
               <div className="relative inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
 
-                <div className='text-[9px]'>
-                  <a className={`${buttonVariants({ variant: 'default' })} mr-3 w-12 h-8 lg:w-20 lg:h-fit bg-brown-100 text-white`}>
+                <div className='h-8 lg:h-10'>
+                  <a className={`${buttonVariants({ variant: 'default' })} text-[9px] md:text-base mr-3 p-4 w-20 h-full lg:w-24 bg-brown-100 text-white`}>
                     Sign In
                   </a>
 
-                  <a className={`${buttonVariants({ variant: 'default' })} mr-3 w-12 h-8 lg:w-20 lg:h-fit bg-gray-100 text-black`}>
+                  <a className={`${buttonVariants({ variant: 'default' })} text-[9px] md:text-base mr-3 p-4 w-20 h-full lg:w-24 bg-gray-100 text-black`}>
                     Sign Up
                   </a>
                 </div>
@@ -100,7 +100,8 @@ export default function Navbar () {
                         <Image
                           src="https://i.ibb.co/C98rcRx/avatar.png"
                           alt='User avatar'
-                          layout='fill'
+                          width={40}
+                          height={40}
                           className='rounded-full'
                         />
                       </div>
