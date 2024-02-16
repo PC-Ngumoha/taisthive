@@ -95,7 +95,7 @@ const CreateRecipePage = () => {
     >
       <div className="flex flex-row justify-between align-middle">
         <h1 className="lg:text-xl text-base font-bold lg:ml-10 ml-3 self-center">Create new recipe</h1>
-        <Button className="lg:mr-10 mr-3 w-28 bg-brown-100" type="submit">Save</Button>
+        <Button className="lg:mr-10 mr-3 w-28 bg-brown-100 text-white" type="submit">Save</Button>
       </div>
       <div className="lg:w-[40%] w-[90%] self-center m-4 p-3">
         <div className="my-5">
