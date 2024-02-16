@@ -1,6 +1,8 @@
 'use client';
-import { Fragment, useEffect } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import Image from 'next/image';
+// import Link from 'next/link';
+import { useRouter, usePathname } from 'next/navigation';
 import { shantell_sans } from '@/fonts';
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
@@ -10,11 +12,12 @@ import useAuthStore from '@/store/use-auth';
 import { buttonVariants } from '../ui/button';
 import { checkIfAuthenticated } from '@/utils/auth-helpers';
 
-const navigation = [
-  { name: 'Home', href: '/', current: true },
-  { name: 'Recipes', href: '/recipes', current: false },
-  { name: 'About Us', href: '#', current: false },
-]
+
+interface NavigationOptionType {
+  name: string;
+  href: string;
+  current: boolean;
+};
 
 function classNames (...classes: Array<string>) {
   return classes.filter(Boolean).join(' ')
@@ -105,10 +108,38 @@ const ProfileDropdown = () => (
 
 
 export default function Navbar () {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const [navigation, setNavigation] = useState<Array<NavigationOptionType>>([
+    { name: 'Home', href: '/', current: true },
+    { name: 'Recipes', href: '/recipes', current: false },
+    { name: 'About Us', href: '#', current: false },
+  ]);
+
+  const changeCurrent = (index: number) => {
+    const newNavigation = [...navigation];
+    newNavigation.forEach((item) => { item.current = false });
+    newNavigation[index].current = true;
+    setNavigation(newNavigation);
+  };
+
+  const setCurrent = () => {
+    const newNavigation = [...navigation];
+    newNavigation.forEach((item) => {
+      if (item.href === pathname) {
+        item.current = true;
+      } else {
+        item.current = false;
+      }
+    })
+    setNavigation(newNavigation);
+  };
 
   useEffect(() => {
     checkIfAuthenticated();
-  }, []);
+    setCurrent();
+  }, [pathname]);
 
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   // console.log(isAuthenticated)
@@ -141,9 +172,14 @@ export default function Navbar () {
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
-                    {navigation.map((item) => (
+                    {navigation.map((item, index) => (
                       <a
                         key={item.name}
+                        onClick={(evt) => {
+                          evt.preventDefault();
+                          changeCurrent(index);
+                          router.push(item.href);
+                        }}
                         href={item.href}
                         className={classNames(
                           item.current ? 'bg-brown-100 text-white' : 'text-brown-100 hover:bg-brown-50',
@@ -165,10 +201,15 @@ export default function Navbar () {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
-              {navigation.map((item) => (
+              {navigation.map((item, index) => (
                 <Disclosure.Button
                   key={item.name}
                   as="a"
+                  onClick={(evt) => {
+                    evt.preventDefault();
+                    changeCurrent(index);
+                    router.push(item.href);
+                  }}
                   href={item.href}
                   className={classNames(
                     item.current ? 'bg-brown-100 text-white' : 'text-brown-100 hover:bg-brown-50',
