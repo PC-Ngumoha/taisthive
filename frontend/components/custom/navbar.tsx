@@ -145,7 +145,12 @@ export default function Navbar () {
   // console.log(isAuthenticated)
 
   return (
-    <Disclosure as="nav" className="bg-transparent sticky top-0">
+    <Disclosure as="nav" className={
+      classNames(
+        pathname === '/create-recipe' ? 'bg-white opacity-95' : 'bg-transparent',
+        "sticky top-0 z-30"
+      )
+    }>
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">

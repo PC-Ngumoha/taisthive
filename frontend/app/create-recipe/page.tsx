@@ -14,9 +14,9 @@ const CreateRecipePage = () => {
   const searchParams = useSearchParams();
   const { toast } = useToast();
 
+  const [isUpdate, setIsUpdate] = useState<boolean>(false);
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
-
   const [ingredientFields, setIngredientFields] = useState<Array<string>>(['']);
   const [instructionFields, setInstructionFields] = useState<Array<string>>(['']);
 
@@ -30,6 +30,7 @@ const CreateRecipePage = () => {
             const {
               name, description, ingredients, instructions
             }: RecipeResponseDataType = response.data;
+            setIsUpdate(true);
             setTitle(name);
             setDescription(description);
             setIngredientFields(ingredients);
@@ -93,9 +94,11 @@ const CreateRecipePage = () => {
       onSubmit={handleSubmit}
       name="create-recipe"
     >
-      <div className="flex flex-row justify-between align-middle">
-        <h1 className="lg:text-xl text-base font-bold lg:ml-10 ml-3 self-center">Create new recipe</h1>
-        <Button className="lg:mr-10 mr-3 w-28 bg-brown-100 text-white" type="submit">Save</Button>
+      <div className="fixed top-0 w-full h-[18%] px-2 md:px-20 flex flex-row justify-between align-end bg-white opacity-95">
+        <h1 className="lg:text-xl text-base font-bold lg:ml-10 ml-0 self-end">
+          {isUpdate ? "Update recipe" : "Create new recipe"}
+        </h1>
+        <Button className="lg:mr-10 mr-9 w-28 bg-brown-100 text-white self-end" type="submit">Save</Button>
       </div>
       <div className="lg:w-[40%] w-[90%] self-center m-4 p-3">
         <div className="my-5">
