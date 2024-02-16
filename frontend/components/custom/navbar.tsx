@@ -40,11 +40,6 @@ export default function Navbar () {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center align-middle text-2xl">
-                  {/* <img
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company"
-                  /> */}
                   <FontAwesomeIcon
                     icon={faUtensils}
                     className="fa-solid fa-utensils"
@@ -72,11 +67,11 @@ export default function Navbar () {
               <div className="relative inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
 
                 <div className='h-8 lg:h-10'>
-                  <a className={`${buttonVariants({ variant: 'default' })} text-[9px] md:text-base mr-3 p-4 w-20 h-full lg:w-24 bg-brown-100 text-white`}>
+                  <a className={`${buttonVariants({ variant: 'default' })} text-[9px] md:text-base mr-3 p-4 w-20 h-full lg:w-24 bg-brown-100 text-white shadow-md`}>
                     Sign In
                   </a>
 
-                  <a className={`${buttonVariants({ variant: 'default' })} text-[9px] md:text-base mr-3 p-4 w-20 h-full lg:w-24 bg-gray-100 text-black`}>
+                  <a className={`${buttonVariants({ variant: 'default' })} text-[9px] md:text-base mr-3 p-4 w-20 h-full lg:w-24 bg-gray-100 text-black shadow-md`}>
                     Sign Up
                   </a>
                 </div>

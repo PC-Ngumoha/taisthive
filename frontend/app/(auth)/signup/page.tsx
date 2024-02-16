@@ -106,7 +106,7 @@ const SignupPage = () => {
 
           <div className='my-3'>
             <Button
-              className='w-36 bg-brown-100'
+              className='w-36 bg-brown-100 text-white'
               type='submit'
             >
               Sign Up
