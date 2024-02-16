@@ -1,12 +1,14 @@
 'use client';
-import { Fragment } from 'react'
+import { Fragment, useEffect } from 'react'
 import Image from 'next/image';
 import { shantell_sans } from '@/fonts';
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUtensils } from '@fortawesome/free-solid-svg-icons';
+import useAuthStore from '@/store/use-auth';
 import { buttonVariants } from '../ui/button';
+import { checkIfAuthenticated } from '@/utils/auth-helpers';
 
 const navigation = [
   { name: 'Dashboard', href: '#', current: true },
@@ -20,6 +22,14 @@ function classNames (...classes: Array<string>) {
 }
 
 export default function Navbar () {
+
+  useEffect(() => {
+    checkIfAuthenticated();
+  }, []);
+
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+  console.log(isAuthenticated)
+
   return (
     <Disclosure as="nav" className="bg-transparent sticky top-0">
       {({ open }) => (

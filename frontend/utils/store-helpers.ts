@@ -1,3 +1,8 @@
+
+const hasAuthStore = () => {
+  return (localStorage.getItem('auth-store') !== null);
+};
+
 const getAccessToken = () => {
   const authStore = JSON.parse(localStorage.getItem('auth-store')!);
   const accessToken = authStore.state.access;
@@ -17,8 +22,17 @@ const getRefreshToken = () => {
   return refreshToken;
 };
 
+const setAuthenticationState = (authState: boolean) => {
+  const authStore = JSON.parse(localStorage.getItem('auth-store')!);
+  const newAuthStore = { ...authStore };
+  newAuthStore.state.isAuthenticated = authState;
+  localStorage.setItem('auth-store', JSON.stringify(newAuthStore));
+}
+
 export {
+  hasAuthStore,
   getAccessToken,
   getRefreshToken,
   setAccessToken,
+  setAuthenticationState,
 }

@@ -4,6 +4,7 @@ import { devtools, persist } from 'zustand/middleware';
 interface AuthState {
   access: string;
   refresh: string;
+  isAuthenticated: boolean;
   setAuthTokens: (atoken: string, rtoken: string) => void;
   updateAccessToken: (token: string) => void;
 };
@@ -14,6 +15,7 @@ const useAuthStore = create<AuthState>()(
       (set) => ({
         access: '',
         refresh: '',
+        isAuthenticated: false,
         setAuthTokens: (atoken, rtoken) => set(() => (
           {
             access: atoken,

@@ -7,8 +7,11 @@ import {
 import {
   getAccessToken,
   getRefreshToken,
-  setAccessToken
+  hasAuthStore,
+  setAccessToken,
+  setAuthenticationState
 } from './store-helpers';
+import { status } from '.';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -131,12 +134,37 @@ export const loginUser = async (data: UserDetailsType) => {
   }
 };
 
-export const refreshUserLogin = async (data: UserLoginRefreshType) => {
+const refreshUserLogin = async (data: UserLoginRefreshType) => {
   try {
     const response = await authRequest.post('/login/refresh', data);
     return response;
   } catch (err) {
     console.log(err);
     throw err;
+  }
+};
+
+export const checkIfAuthenticated = async () => {
+  if (hasAuthStore()) {
+    const refresh = getRefreshToken();
+
+    if (refresh !== '') {
+      try {
+        const response = await refreshUserLogin({ refresh });
+        if (response.status === status.HTTP_200_OK) {
+          const freshAccess = response.data.access;
+          setAccessToken(freshAccess);
+          setAuthenticationState(true);
+        } else {
+          setAuthenticationState(false);
+        }
+      } catch (err) {
+        setAuthenticationState(false);
+      }
+    } else {
+      setAuthenticationState(false);
+    }
+  } else {
+    setAuthenticationState(false);
   }
 };
