@@ -45,6 +45,7 @@ const SignupPage = () => {
           next = '/signup';
         }
         router.replace(next);
+        location.reload();
       } catch (err) {
         toast({
           title: 'Error: ',

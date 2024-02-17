@@ -44,6 +44,7 @@ const SigninPage = () => {
           next = '/signin';
         }
         router.replace(next);
+        location.reload();
       } catch (err) {
         toast({
           title: 'Error: ',

@@ -114,7 +114,7 @@ export default function Navbar () {
   const [navigation, setNavigation] = useState<Array<NavigationOptionType>>([
     { name: 'Home', href: '/', current: true },
     { name: 'Recipes', href: '/recipes', current: false },
-    { name: 'About Us', href: '#', current: false },
+    { name: 'About Us', href: '/about', current: false },
   ]);
 
   const changeCurrent = (index: number) => {
