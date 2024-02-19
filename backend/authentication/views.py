@@ -18,12 +18,12 @@ class CreateUserView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class RetrieveCurrentUser(APIView):
-    serializer_class = UserSerializer
+# class RetrieveCurrentUser(APIView):
+#     serializer_class = UserSerializer
 
-    def get(self, request):
-        user = self.serializer_class(request.user)
-        return Response(user.data, status=status.HTTP_200_OK)
+#     def get(self, request):
+#         user = self.serializer_class(request.user)
+#         return Response(user.data, status=status.HTTP_200_OK)
 
-    def head(self, request):
-        return Response(status=status.HTTP_204_NO_CONTENT)
+#     def head(self, request):
+#         return Response(status=status.HTTP_204_NO_CONTENT)
