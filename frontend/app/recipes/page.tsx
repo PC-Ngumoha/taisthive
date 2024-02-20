@@ -9,12 +9,14 @@ import RecipeCard from '@/components/custom/recipe-card';
 import { getAllRecipes, status } from '@/utils';
 import { RecipeResponseDataType } from '@/types';
 import { buttonVariants } from '@/components/ui/button';
+import usePageHistory from '@/store/use_page';
 
 const RecipesPage = () => {
   const { toast } = useToast();
   const router = useRouter();
 
   const [recipes, setRecipes] = useState([]);
+  const setPreviousPage = usePageHistory(state => state.setPrevURL);
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -29,6 +31,7 @@ const RecipesPage = () => {
           description: 'Session has expired. Login Again',
           variant: 'destructive',
         });
+        setPreviousPage('/recipes');
         router.replace('/signin');
       }
     };

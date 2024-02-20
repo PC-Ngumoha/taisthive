@@ -9,6 +9,7 @@ import { getRecipe, deleteRecipe, status } from "@/utils";
 import { RecipeResponseDataType } from "@/types";
 import { useToast } from "@/components/ui/use-toast";
 import ItemsList from "@/components/custom/item-list";
+import usePageHistory from "@/store/use_page";
 
 const RecipePage = ({ params }: { params: { recipeId: number } }) => {
   const router = useRouter();
@@ -20,6 +21,7 @@ const RecipePage = ({ params }: { params: { recipeId: number } }) => {
     ingredients: [''],
     instructions: [''],
   });
+  const setPreviousPage = usePageHistory(state => state.setPrevURL);
 
   useEffect(() => {
     const fetchRecipe = async () => {
@@ -31,9 +33,10 @@ const RecipePage = ({ params }: { params: { recipeId: number } }) => {
       } catch (error) {
         toast({
           title: 'Error:',
-          description: `Unable to retrieve recipe with ID: `,
+          description: 'Unable to retrieve desired recipe. Maybe you are not logged in',
           variant: 'destructive',
         });
+        setPreviousPage('/recipes');
         router.replace('/signin');
       }
     };

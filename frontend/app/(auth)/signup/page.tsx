@@ -10,16 +10,20 @@ import { useToast } from '@/components/ui/use-toast';
 import { EmailField, PasswordField } from '@/components/custom/form-fields';
 import { createUser, loginUser, status } from '@/utils';
 import useAuthStore from '@/store/use-auth';
+import usePageHistory from '@/store/use_page';
 import displayPic from '../../../public/chicken-sauce.jpg';
 
 const SignupPage = () => {
   const { toast } = useToast();
   const router = useRouter();
-  const setAuthTokens = useAuthStore((state) => state.setAuthTokens);
+  const setAuthTokens = useAuthStore(state => state.setAuthTokens);
+  const setIsAuth = useAuthStore(state => state.setIsAuthenticated);
 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
+
+  const previousPage = usePageHistory(state => state.prevURL);
 
   const handleSubmit = async (evt: any) => {
     evt.preventDefault();
@@ -31,11 +35,12 @@ const SignupPage = () => {
           response = await loginUser({ email, password });
           const { access, refresh } = response.data;
           setAuthTokens(access, refresh);
+          setIsAuth(true);
           toast({
             title: 'Success',
             description: 'User created successfully'
           });
-          next = '/';
+          next = previousPage;
         } else {
           toast({
             title: 'Error:',

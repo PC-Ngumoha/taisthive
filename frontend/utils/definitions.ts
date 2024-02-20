@@ -10,3 +10,5 @@ export const status = {
   HTTP_403_FORBIDDEN: 403,
   HTTP_404_NOT_FOUND: 404,
 };
+
+export type AvailablePaths = '/' | '/signin' | '/signup' | '/create-recipe' | '/recipes' | '/about';

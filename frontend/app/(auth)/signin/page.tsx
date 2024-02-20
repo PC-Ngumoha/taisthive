@@ -10,6 +10,7 @@ import { useToast } from '@/components/ui/use-toast';
 import { EmailField, PasswordField } from '@/components/custom/form-fields';
 import { loginUser, status, checkIfAuthenticated } from '@/utils';
 import useAuthStore from '@/store/use-auth';
+import usePageHistory from '@/store/use_page';
 import displayPic from '../../../public/chicken-sauce.jpg';
 
 const SigninPage = () => {
@@ -21,6 +22,8 @@ const SigninPage = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
+
+  const previousPage = usePageHistory(state => state.prevURL);
 
   const handleSubmit = async (evt: any) => {
     evt.preventDefault();
@@ -36,7 +39,11 @@ const SigninPage = () => {
           const { access, refresh } = response.data;
           setAuthTokens(access, refresh);
           setIsAuth(true);
-          next = '/';
+          toast({
+            title: 'Success',
+            description: 'User created successfully'
+          });
+          next = previousPage;
         } else {
           toast({
             title: 'Error: ',
