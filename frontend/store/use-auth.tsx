@@ -5,8 +5,10 @@ interface AuthState {
   access: string;
   refresh: string;
   isAuthenticated: boolean;
+  setIsAuthenticated: (isAuth: boolean) => void;
   setAuthTokens: (atoken: string, rtoken: string) => void;
   updateAccessToken: (token: string) => void;
+  destroyTokens: () => void;
 };
 
 const useAuthStore = create<AuthState>()(
@@ -16,6 +18,11 @@ const useAuthStore = create<AuthState>()(
         access: '',
         refresh: '',
         isAuthenticated: false,
+        setIsAuthenticated: (isAuth) => set(() => (
+          {
+            isAuthenticated: isAuth
+          }
+        )),
         setAuthTokens: (atoken, rtoken) => set(() => (
           {
             access: atoken,
@@ -26,7 +33,13 @@ const useAuthStore = create<AuthState>()(
           {
             access: token
           }
-        ))
+        )),
+        destroyTokens: () => set(() => (
+          {
+            access: '',
+            refresh: ''
+          }
+        )),
       }),
       {
         name: "auth-store"

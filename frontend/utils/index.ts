@@ -5,7 +5,8 @@ import {
   deleteRecipe,
   createRecipe,
   createUser,
-  loginUser
+  loginUser,
+  checkIfAuthenticated
 } from './auth-helpers';
 import { status } from './definitions';
 
@@ -18,6 +19,7 @@ export {
   createUser,
   loginUser,
   status,
+  checkIfAuthenticated,
 };
 
 

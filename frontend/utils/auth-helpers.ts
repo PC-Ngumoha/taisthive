@@ -9,7 +9,8 @@ import {
   getRefreshToken,
   hasAuthStore,
   setAccessToken,
-  setAuthenticationState
+  setAuthenticationState,
+  setRefreshToken
 } from './store-helpers';
 import { status } from '.';
 
@@ -46,7 +47,9 @@ recipeRequest.interceptors.response.use(
           { refresh }
         );
         const newAccess = refreshResponse.data.access;
+        const newRefresh = refreshResponse.data.refresh;
         setAccessToken(newAccess);
+        setRefreshToken(newRefresh);
 
         return recipeRequest(error.config);
       } catch (err) {
@@ -153,7 +156,9 @@ export const checkIfAuthenticated = async () => {
         const response = await refreshUserLogin({ refresh });
         if (response.status === status.HTTP_200_OK) {
           const freshAccess = response.data.access;
+          const freshRefresh = response.data.refresh;
           setAccessToken(freshAccess);
+          setRefreshToken(freshRefresh);
           setAuthenticationState(true);
         } else {
           setAuthenticationState(false);

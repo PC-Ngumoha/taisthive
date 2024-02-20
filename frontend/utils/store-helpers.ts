@@ -22,6 +22,13 @@ const getRefreshToken = () => {
   return refreshToken;
 };
 
+const setRefreshToken = (token: string) => {
+  const authStore = JSON.parse(localStorage.getItem('auth-store')!);
+  const newAuthStore = { ...authStore };
+  newAuthStore.state.refresh = token;
+  localStorage.setItem('auth-store', JSON.stringify(newAuthStore));
+};
+
 const setAuthenticationState = (authState: boolean) => {
   const authStore = JSON.parse(localStorage.getItem('auth-store')!);
   const newAuthStore = { ...authStore };
@@ -34,5 +41,6 @@ export {
   getAccessToken,
   getRefreshToken,
   setAccessToken,
+  setRefreshToken,
   setAuthenticationState,
 }

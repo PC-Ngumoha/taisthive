@@ -8,7 +8,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/components/ui/use-toast';
 import { EmailField, PasswordField } from '@/components/custom/form-fields';
-import { loginUser, status } from '@/utils';
+import { loginUser, status, checkIfAuthenticated } from '@/utils';
 import useAuthStore from '@/store/use-auth';
 import displayPic from '../../../public/chicken-sauce.jpg';
 
@@ -16,6 +16,7 @@ const SigninPage = () => {
   const { toast } = useToast();
   const router = useRouter();
   const setAuthTokens = useAuthStore((state) => state.setAuthTokens);
+  const setIsAuth = useAuthStore((state) => state.setIsAuthenticated);
 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -34,6 +35,7 @@ const SigninPage = () => {
           });
           const { access, refresh } = response.data;
           setAuthTokens(access, refresh);
+          setIsAuth(true);
           next = '/';
         } else {
           toast({
@@ -44,7 +46,6 @@ const SigninPage = () => {
           next = '/signin';
         }
         router.replace(next);
-        location.reload();
       } catch (err) {
         toast({
           title: 'Error: ',
