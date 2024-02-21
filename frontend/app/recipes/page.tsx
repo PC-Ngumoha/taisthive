@@ -25,14 +25,16 @@ const RecipesPage = () => {
         if (response.status === status.HTTP_200_OK) {
           setRecipes(response.data);
         }
-      } catch (error) {
-        toast({
-          title: 'Error:',
-          description: 'Session has expired. Login Again',
-          variant: 'destructive',
-        });
-        setPreviousPage('/recipes');
-        router.replace('/signin');
+      } catch (error: any) {
+        if (error.response.status === status.HTTP_401_UNAUTHORIZED) {
+          toast({
+            title: 'Error:',
+            description: 'Session has expired. Login Again',
+            variant: 'destructive',
+          });
+          setPreviousPage('/recipes');
+          router.replace('/signin');
+        }
       }
     };
 

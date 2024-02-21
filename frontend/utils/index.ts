@@ -9,6 +9,7 @@ import {
   checkIfAuthenticated
 } from './auth-helpers';
 import { status } from './definitions';
+import { classNames } from './ui-utils';
 
 export {
   getAllRecipes,
@@ -20,6 +21,7 @@ export {
   loginUser,
   status,
   checkIfAuthenticated,
+  classNames,
 };
 
 

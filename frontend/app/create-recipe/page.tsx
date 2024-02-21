@@ -39,7 +39,7 @@ const CreateRecipePage = () => {
         } catch (error) {
           toast({
             title: 'Error:',
-            description: `Unable to retrieve for recipe with ID: ${recipeId}`,
+            description: 'Unable to retrieve the contents of this recipe',
             variant: 'destructive'
           });
         }

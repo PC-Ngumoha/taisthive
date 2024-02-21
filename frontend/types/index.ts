@@ -19,3 +19,9 @@ export interface UserLoginRefreshType {
 export interface RecipeResponseDataType extends RecipeDataType {
   id: number;
 }
+
+export interface NavigationOptionType {
+  name: string;
+  href: string;
+  current: boolean;
+};
