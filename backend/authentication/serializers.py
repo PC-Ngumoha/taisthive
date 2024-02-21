@@ -3,7 +3,6 @@ from rest_framework import serializers
 
 
 class UserSerializer(serializers.ModelSerializer):
-    """serialize data from the user model"""
     class Meta:
         model = User
         fields = ('id', 'email', 'password')
@@ -15,6 +14,3 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
-
-    # def update(self, instance, validated_data):
-    #     pass

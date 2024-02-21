@@ -7,8 +7,6 @@ import uuid
 
 
 class CustomUserManager(BaseUserManager):
-    """user manager for the custom user"""
-
     def create_user(self, email, password, **extra_fields):
         if not email:
             raise ValueError("Users must have an email address")
@@ -18,6 +16,7 @@ class CustomUserManager(BaseUserManager):
         return user
 
     def create_superuser(self, email, password, **extra_fields):
+        # Ensuring that the is_staff, is_active and is_superuser fields are set
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_active', True)
         extra_fields.setdefault('is_superuser', True)
@@ -30,7 +29,6 @@ class CustomUserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    """custom user designed for use in creating a new user"""
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(max_length=100, unique=True)
     password = models.CharField(max_length=60)

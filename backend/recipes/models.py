@@ -3,7 +3,6 @@ from django.db import models
 
 
 class Recipe(models.Model):
-    """Recipe DB model definition"""
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=250)
     description = models.TextField()
