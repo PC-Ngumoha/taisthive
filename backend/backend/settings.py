@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     # Local (Custom) packages.
     'recipes',
     'authentication',
+    'user_profile',
 ]
 
 MIDDLEWARE = [
