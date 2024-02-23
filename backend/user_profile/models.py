@@ -9,7 +9,6 @@ class Profile(models.Model):
     first_name = models.CharField(max_length=125, blank=True, null=True)
     middle_name = models.CharField(max_length=125, blank=True, null=True)
     last_name = models.CharField(max_length=125, blank=True, null=True)
-    email = models.EmailField(max_length=100, blank=False, null=False)
 
     user = models.OneToOneField(User,
                                 on_delete=models.CASCADE,

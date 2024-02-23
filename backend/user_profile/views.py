@@ -17,8 +17,7 @@ class CreateRetrieveAndUpdateProfile(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
-        data = {'display_name': request.user.email,
-                'email': request.user.email}
+        data = {'display_name': request.user.email}
         serializer = self.serializer_class(data=data)
         if serializer.is_valid():
             serializer.save(user=request.user)
