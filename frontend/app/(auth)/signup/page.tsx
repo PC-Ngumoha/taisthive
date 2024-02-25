@@ -5,7 +5,7 @@ import { useToast } from '@/components/ui/use-toast';
 import AuthForm from '@/components/custom/auth-form';
 import useAuthStore from '@/store/use-auth';
 import usePageHistory from '@/store/use_page';
-import { createUser, loginUser, status } from '@/utils';
+import { createUser, loginUser, createUserProfile, status } from '@/utils';
 
 const SignupPage = () => {
   const { toast } = useToast();
@@ -30,6 +30,7 @@ const SignupPage = () => {
           if (response.status === status.HTTP_200_OK) {
             const { access, refresh } = response.data;
             setAuthTokens(access, refresh);
+            await createUserProfile();
             setIsAuth(true);
             toast({
               title: 'Success',

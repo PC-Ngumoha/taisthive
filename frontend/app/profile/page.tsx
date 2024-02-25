@@ -1,11 +1,50 @@
-
+'use client';
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { buttonVariants } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
+import { retrieveUserProfile, status } from "@/utils";
 
 const ProfilePage = () => {
+  const router = useRouter();
+  const { toast } = useToast();
+
+  const [displayName, setDisplayName] = useState<string>('');
+  const [firstName, setFirstName] = useState<string>('');
+  const [middleName, setMiddleName] = useState<string>('');
+  const [lastName, setLastName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+
+  useEffect(() => {
+    const fetchPageData = async () => {
+      try {
+        const response = await retrieveUserProfile();
+
+        if (response.status === status.HTTP_200_OK) {
+          setDisplayName(response.data['display_name']);
+          setFirstName(response.data['first_name']);
+          setMiddleName(response.data['middle_name']);
+          setLastName(response.data['last_name']);
+          setEmail(response.data['email']);
+        }
+      } catch (err) {
+        toast({
+          title: 'Error:',
+          description: 'Unable to retrieve user profile, try logging in again',
+          variant: 'destructive',
+        });
+        router.push('/');
+      }
+    };
+
+    fetchPageData();
+  }, []);
+
+
   return (
     <div className="w-[80%] mx-auto">
       <div className="w-[80%] md:w-[50%] h-[40vh] mx-auto my-6 relative bg-[url('/ingredients.jpg')] bg-no-repeat bg-cover bg-center rounded-tl-lg rounded-tr-lg">
@@ -17,8 +56,8 @@ const ProfilePage = () => {
             height={150}
             className='rounded-full'
           />
-          <span className="text-2xl font-bold text-white">Jon Doe</span>
-          <span className="text-base text-gray-100">jondoe@example.com</span>
+          <span className="text-2xl font-bold text-white">{displayName}</span>
+          <span className="text-base text-gray-100">{email}</span>
           <Link
             href='/edit-profile'
             className={`${buttonVariants({ variant: 'default' })} bg-brown-100 text-white absolute top-2 right-2`}>
@@ -27,11 +66,28 @@ const ProfilePage = () => {
         </div>
       </div>
 
-      <div className="w-[80%] md:w-[50%] h-[40vh] mx-auto my-6 relative bg-grey-50 p-6 overflow-auto rounded-bl-lg rounded-br-lg">
-        <p>Display Name: Jon Doe</p>
-        <p>First Name: Jon</p>
-        <p>Middle Name: **Not Provided**</p>
-        <p>Last Name: Doe</p>
+      <div className="w-[80%] md:w-[50%] h-[40vh] mx-auto my-6 relative bg-grey-50 p-6 overflow-auto rounded-bl-lg rounded-br-lg leading-8">
+        <p><span className="font-bold">Display Name</span>:
+          {` ${displayName}`}
+        </p>
+        {firstName && (
+          <p><span className="font-bold">First Name</span>:
+            {` ${firstName}`}
+          </p>
+        )}
+        {middleName && (
+          <p><span className="font-bold">Middle Name</span>:
+            {` ${middleName}`}
+          </p>
+        )}
+        {lastName && (
+          <p><span className="font-bold">Last Name</span>:
+            {` ${lastName}`}
+          </p>
+        )}
+        <p><span className="font-bold">Email Address</span>:
+          {` ${email}`}
+        </p>
       </div>
     </div>
   );

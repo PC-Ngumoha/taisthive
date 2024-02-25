@@ -6,7 +6,10 @@ import {
   createRecipe,
   createUser,
   loginUser,
-  checkIfAuthenticated
+  checkIfAuthenticated,
+  createUserProfile,
+  retrieveUserProfile,
+  updateUserProfile,
 } from './auth-helpers';
 import { status } from './definitions';
 import { classNames } from './ui-utils';
@@ -22,6 +25,9 @@ export {
   status,
   checkIfAuthenticated,
   classNames,
+  createUserProfile,
+  retrieveUserProfile,
+  updateUserProfile,
 };
 
 

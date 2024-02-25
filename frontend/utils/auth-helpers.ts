@@ -60,11 +60,6 @@ recipeRequest.interceptors.response.use(
   }
 )
 
-const authRequest = axios.create({
-  baseURL: `${API_BASE_URL}/api/users`,
-  timeout: 3000,
-});
-
 /* Recipe CRUD Helper Functions */
 export const getAllRecipes = async () => {
   try {
@@ -115,6 +110,13 @@ export const deleteRecipe = async (id: number) => {
     throw err;
   }
 };
+
+
+const authRequest = axios.create({
+  baseURL: `${API_BASE_URL}/api/users`,
+  timeout: 3000,
+});
+
 
 /* User Authentication Helper Functions */
 export const createUser = async (data: UserDetailsType) => {
@@ -171,5 +173,91 @@ export const checkIfAuthenticated = async () => {
     }
   } else {
     setAuthenticationState(false);
+  }
+};
+
+
+const profileRequest = axios.create({
+  baseURL: `${API_BASE_URL}/api/profile`,
+  timeout: 3000,
+})
+
+
+profileRequest.interceptors.request.use(
+  (config) => {
+    const access = getAccessToken();
+
+    if (access) {
+      config.headers.Authorization = `Bearer ${access}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+)
+
+profileRequest.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    if (error.response && error.response.status === 401) {
+      try {
+        const refresh = getRefreshToken();
+        const refreshResponse = await axios.post(
+          `${API_BASE_URL}/api/users/login/refresh`,
+          { refresh }
+        );
+        const newAccess = refreshResponse.data.access;
+        const newRefresh = refreshResponse.data.refresh;
+        setAccessToken(newAccess);
+        setRefreshToken(newRefresh);
+
+        return recipeRequest(error.config);
+      } catch (err) {
+        return Promise.reject(error);
+      }
+    }
+    return Promise.reject(error);
+  }
+)
+
+export const createUserProfile = async () => {
+  try {
+    const response = await profileRequest.post('/');
+    return response;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+};
+
+export const retrieveUserProfile = async () => {
+  try {
+    const response = await profileRequest.get('/');
+    return response;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+};
+
+export const updateUserProfile = async (data: {
+  displayName: string,
+  firstName: string,
+  middleName: string,
+  lastName: string
+}) => {
+  const payload = {
+    'display_name': data.displayName,
+    'first_name': data.firstName,
+    'middle_name': data.middleName,
+    'last_name': data.lastName,
+  };
+  try {
+    const response = profileRequest.put('/', payload);
+    return response;
+  } catch (err) {
+    console.log(err);
+    throw err;
   }
 };
