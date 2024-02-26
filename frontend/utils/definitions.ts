@@ -11,4 +11,4 @@ export const status = {
   HTTP_404_NOT_FOUND: 404,
 };
 
-export type AvailablePaths = '/' | '/signin' | '/signup' | '/create-recipe' | '/recipes' | '/about';
+export type AvailablePaths = '/' | '/signin' | '/signup' | '/create-recipe' | '/recipes' | '/about' | '/profile';

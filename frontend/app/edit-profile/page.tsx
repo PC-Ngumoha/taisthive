@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { retrieveUserProfile, status, updateUserProfile } from "@/utils";
+import usePageHistory from "@/store/use_page";
 
 const EditProfilePage = () => {
   const router = useRouter();
@@ -15,6 +16,8 @@ const EditProfilePage = () => {
   const [firstName, setFirstName] = useState<string>('');
   const [middleName, setMiddleName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
+
+  const previousPage = usePageHistory(state => state.prevURL);
 
   useEffect(() => {
     const fetchPageData = async () => {
@@ -33,7 +36,7 @@ const EditProfilePage = () => {
           description: 'Unable to retrieve user profile, try logging in again',
           variant: 'destructive',
         });
-        router.push('/');
+        router.push('/signin');
       }
     };
 
@@ -42,6 +45,7 @@ const EditProfilePage = () => {
 
   const handleSubmit = async (evt: any) => {
     evt.preventDefault();
+    let next = '';
     try {
       const data = { displayName, firstName, middleName, lastName };
       const response = await updateUserProfile(data);
@@ -51,7 +55,8 @@ const EditProfilePage = () => {
           title: 'Success:',
           description: 'Profile Updated Successfully',
         })
-        router.replace('/profile');
+        // router.replace('/profile');
+        next = previousPage;
       }
     } catch (err: any) {
       if (err.response.status === status.HTTP_401_UNAUTHORIZED) {
@@ -60,15 +65,18 @@ const EditProfilePage = () => {
           description: 'Session expired, try logging in again',
           variant: 'destructive',
         })
-        router.replace('/signin');
+        // router.replace('/signin');
+        next = '/signin';
       } else {
         toast({
           title: 'Error:',
           description: 'Unable to update profile, try again',
           variant: 'destructive',
         })
+        next = previousPage;
       }
     }
+    router.replace(next);
   }
 
   return (

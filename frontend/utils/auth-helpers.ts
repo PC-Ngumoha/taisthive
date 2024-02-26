@@ -221,6 +221,7 @@ profileRequest.interceptors.response.use(
   }
 )
 
+/* User Profile Creation, Retrieval and Updation functions */
 export const createUserProfile = async () => {
   try {
     const response = await profileRequest.post('/');

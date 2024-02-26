@@ -14,14 +14,22 @@ export const AuthSegment = () => (
   >
     <a
       href='/signin'
-      className={`${buttonVariants({ variant: 'default' })} text-[9px] md:text-base mr-3 p-4 w-20 h-full lg:w-24 bg-brown-100 text-white shadow-md`}
+      className={
+        classNames(
+          buttonVariants({ variant: 'default' }),
+          'text-[9px] md:text-base mr-3 p-4 w-20 h-full lg:w-24 bg-brown-100 text-white shadow-md'
+        )}
     >
       Sign In
     </a>
 
     <a
       href='/signup'
-      className={`${buttonVariants({ variant: 'default' })} text-[9px] md:text-base mr-3 p-4 w-20 h-full lg:w-24 bg-gray-100 text-black shadow-md`}
+      className={
+        classNames(
+          buttonVariants({ variant: 'default' }),
+          'text-[9px] md:text-base mr-3 p-4 w-20 h-full lg:w-24 bg-gray-100 text-black shadow-md'
+        )}
     >
       Sign Up
     </a>
@@ -64,7 +72,11 @@ export const ProfileDropdown = () => {
             {({ active }) => (
               <a
                 href="#"
-                className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                className={
+                  classNames(
+                    active ? 'bg-gray-100' : '',
+                    'block px-4 py-2 text-sm text-gray-700'
+                  )}
                 onClick={(evt) => {
                   evt.preventDefault();
                   router.replace('/profile');
@@ -78,7 +90,11 @@ export const ProfileDropdown = () => {
             {({ active }) => (
               <a
                 href="#"
-                className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                className={
+                  classNames(
+                    active ? 'bg-gray-100' : '',
+                    'block px-4 py-2 text-sm text-gray-700'
+                  )}
               >
                 Settings
               </a>
@@ -88,7 +104,11 @@ export const ProfileDropdown = () => {
             {({ active }) => (
               <a
                 href="#"
-                className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                className={
+                  classNames(
+                    active ? 'bg-gray-100' : '',
+                    'block px-4 py-2 text-sm text-gray-700'
+                  )}
                 onClick={(evt) => {
                   evt.preventDefault();
                   destroyTokens();

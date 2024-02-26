@@ -7,7 +7,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { buttonVariants } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
-import { retrieveUserProfile, status } from "@/utils";
+import { retrieveUserProfile, status, classNames } from "@/utils";
+import usePageHistory from "@/store/use_page";
+import { shantell_sans } from "@/fonts";
 
 const ProfilePage = () => {
   const router = useRouter();
@@ -18,6 +20,8 @@ const ProfilePage = () => {
   const [middleName, setMiddleName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
+
+  const setPreviousPage = usePageHistory(state => state.setPrevURL);
 
   useEffect(() => {
     const fetchPageData = async () => {
@@ -37,7 +41,7 @@ const ProfilePage = () => {
           description: 'Unable to retrieve user profile, try logging in again',
           variant: 'destructive',
         });
-        router.push('/');
+        router.push('/signin');
       }
     };
 
@@ -47,7 +51,12 @@ const ProfilePage = () => {
 
   return (
     <div className="w-[80%] mx-auto">
-      <div className="w-[80%] md:w-[50%] h-[40vh] mx-auto my-6 relative bg-[url('/ingredients.jpg')] bg-no-repeat bg-cover bg-center rounded-tl-lg rounded-tr-lg">
+      <div className={
+        classNames(
+          "w-[80%] md:w-[50%] h-[40vh] mx-auto my-6 relative rounded-tl-lg rounded-tr-lg",
+          "bg-[url('/ingredients.jpg')] bg-no-repeat bg-cover bg-center"
+        )}
+      >
         <div className="w-full h-full relative flex flex-col items-center justify-center">
           <Image
             src="https://i.ibb.co/C98rcRx/avatar.png"
@@ -56,11 +65,24 @@ const ProfilePage = () => {
             height={150}
             className='rounded-full'
           />
-          <span className="text-2xl font-bold text-white">{displayName}</span>
+          <span className={
+            classNames(shantell_sans.className, ' text-xl md:text-2xl lg:text-4xl font-bold text-white')
+          }>
+            {displayName}
+          </span>
           <span className="text-base text-gray-100">{email}</span>
           <Link
-            href='/edit-profile'
-            className={`${buttonVariants({ variant: 'default' })} bg-brown-100 text-white absolute top-2 right-2`}>
+            href='#'
+            className={
+              classNames(
+                buttonVariants({ variant: 'default' }),
+                'bg-brown-100 text-white absolute top-2 right-2'
+              )}
+            onClick={(evt) => {
+              evt.preventDefault();
+              setPreviousPage('/profile');
+              router.push('/edit-profile')
+            }}>
             <FontAwesomeIcon icon={faPen} className="fa-solid fa-pen" />
           </Link>
         </div>
