@@ -13,17 +13,27 @@ Taisthive is the ultimate online community for foodies on the internet. It provi
 
 1. Clone the Github repository and `cd` into it:
     ```
-      git clone https://github.com/PC-Ngumoha/taisthive 
+      git clone https://github.com/PC-Ngumoha/taisthive
       cd taisthive/
     ```
 
 2. Backend Setup:
-    ```
+    ```bash
       cd backend/
+    ```
+
+    Setup virtual environment:
+    ```bash
+      python install virtualenv
+      python -m venv <NAME OF VIRTUAL ENVIRONMENT e.g env>
+    ```
+
+    Activate virtual environment and run server
+    ```
       source env/lib/activate
       pip install -r requirements.txt
-      pip manage.py migrate
-      pip manage.py runserver
+      python manage.py migrate
+      python manage.py runserver
     ```
 
 3. Frontend Setup:

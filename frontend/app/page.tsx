@@ -2,7 +2,10 @@
 
 const HomePage = () => {
   return (
-    <h1 className="">Welcome to Taisthive, A place to <i>Share Your Tastes</i></h1>
+    <>
+      <h1 className="">Wow, it&apos;s been a really long time since I started this project.</h1>
+      <span>Hope to be able to complete it this week</span>
+    </>
   );
 };
 
