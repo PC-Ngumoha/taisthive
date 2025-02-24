@@ -1,6 +1,0 @@
-# env/ directory at the root of the backend/ directory which contains the scripts and packages within this 
-# virtual environment.
-env
-
-# .env file which contains all the environment variables used to ensure that this program works as intended.
-.env
