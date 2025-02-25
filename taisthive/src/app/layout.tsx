@@ -1,16 +1,39 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Open_Sans, Playfair_Display, Montserrat, Pacifico, Lobster_Two } from "next/font/google";
 import { Navbar, Footer } from './components';
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+
+const openSans = Open_Sans({
+  variable: "--font-open-sans",
   subsets: ["latin"],
+  display: "swap"
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
+  display: "swap"
+});
+
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const pacifico = Pacifico({
+  variable: "--font-pacifico",
+  subsets: ["latin"],
+  display: "swap",
+  weight: "400",
+});
+
+const lobsterTwo = Lobster_Two({
+  variable: "--font-lobster-two",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -24,14 +47,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <Navbar />
+    <html lang="en" className={`${openSans.variable} ${playfair.variable} ${montserrat.variable}
+     ${pacifico.variable} ${lobsterTwo.variable}`}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className="antialiased font-sans"
       >
+        <Navbar />
         {children}
+        <Footer />
       </body>
-      <Footer />
     </html>
   );
 }
