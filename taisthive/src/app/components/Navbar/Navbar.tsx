@@ -4,6 +4,7 @@ import React, { type JSX, useState, type Dispatch, type SetStateAction } from "r
 import Link from "next/link";
 import { FaBars } from "react-icons/fa";
 import { FaHouse, FaCircleInfo, FaPhone } from 'react-icons/fa6';
+import { LuDot } from 'react-icons/lu';
 import { RxDoubleArrowRight } from 'react-icons/rx';
 import { motion } from "framer-motion";
 
@@ -30,6 +31,21 @@ const navLinks = [
 
 export default function Navbar(): JSX.Element {
   const [active, setActive] = useState(false);
+  const [dotVisible, setDotVisible] = useState(navLinks.map(() => false));
+
+  // Cause the dot to appear when the mouse hovers over the link
+  const handleMouseEnter = (idx: number) => {
+    const dots = [...dotVisible];
+    dots[idx] = true;
+    setDotVisible(dots);
+  }
+
+  // Cause the dot to disappear when the mouse leaves the link
+  const handleMouseLeave = (idx: number) => {
+    const dots = [...dotVisible];
+    dots[idx] = false;
+    setDotVisible(dots);
+  }
 
   return (
     <>
@@ -43,8 +59,20 @@ export default function Navbar(): JSX.Element {
       {/* Nav Links */}
       <ul className="hidden md:flex justify-around items-center flex-1 font-sans uppercase md:text-sm lg:text-md">
         {
-          navLinks.map((link) => (
-            <li key={link.id} className="mr-3">
+          navLinks.map((link, idx) => (
+            <li key={link.id} className="mr-3 hover:font-extrabold hover:translate-x-1
+              hover:scale-x-105 flex items-center ease-in transition-all duration-100"
+                onMouseEnter = {(evt) => {
+                  handleMouseEnter(idx);
+                  evt.stopPropagation();
+                }}
+                onMouseLeave={(evt) => {
+                  handleMouseLeave(idx)
+                  evt.stopPropagation();
+                }}
+            >
+              {dotVisible[idx] && <LuDot className="text-primary-light text-2xl inline-flex align-middle
+                font-bold -mr-1"/>}
               <Link href={link.url}>
                 {link.name}
               </Link>
