@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Open_Sans, Playfair_Display, Montserrat, Pacifico, Lobster_Two } from "next/font/google";
+import { Open_Sans, Playfair_Display, Montserrat, Pacifico, Lobster_Two, Lora } from "next/font/google";
 import { Navbar, Footer } from './components';
 import "./globals.css";
 
@@ -36,6 +36,13 @@ const lobsterTwo = Lobster_Two({
   weight: ["400", "700"],
 });
 
+const lora = Lora({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-lora",
+  weight: ["400", "700"],
+})
+
 export const metadata: Metadata = {
   title: "Taisthive",
   description: "Recipe App for the Modern Age",
@@ -48,7 +55,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${openSans.variable} ${playfair.variable} ${montserrat.variable}
-     ${pacifico.variable} ${lobsterTwo.variable}`}>
+     ${pacifico.variable} ${lobsterTwo.variable} ${lora.variable}`}>
       <body
         className="antialiased font-sans"
       >

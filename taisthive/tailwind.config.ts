@@ -29,6 +29,7 @@ export default {
         display: ["var(--font-montserrat)", "sans-serif"],
         pacifico: ["var(--font-pacifico)", "cursive"],
         lobster: ["var(--font-lobster-two)", "cursive"],
+        lora: ["var(--font-lora)", "serif"],
       }
     },
   },
