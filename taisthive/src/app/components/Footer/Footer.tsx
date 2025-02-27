@@ -136,7 +136,7 @@ export default function Footer() {
           </div>
         </div>
         {/* Email input form */}
-        <form className="w-full flex flex-col md:flex-row mt-4 h-fit">
+        <form className="w-full flex flex-col md:flex-row mt-4">
           <input
             type="text"
             placeholder="Enter your email"
@@ -146,7 +146,7 @@ export default function Footer() {
           />
           <button
             className="bg-primary-light ml-2 w-[80%] md:w-[20%] shadow-sm rounded-lg text-gray-800 font-bold
-          h-[50px] p-4 self-center"
+          h-[50px] p-4 self-center flex justify-center items-center text-center"
           >
             Submit
           </button>
