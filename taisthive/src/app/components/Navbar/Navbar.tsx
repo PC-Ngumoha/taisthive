@@ -128,7 +128,7 @@ function SideBar({
       exit={{ right: '-100%' }}
       transition={{ duration: 0.5 }}
       className="fixed top-0 right-0 h-screen w-full bg-black bg-opacity-15 shadow-lg
-      md:hidden ease-out duration-300"
+      md:hidden ease-out duration-300 z-50"
     >
       <motion.div
         initial={{ top: 0, right: '-100%' }}

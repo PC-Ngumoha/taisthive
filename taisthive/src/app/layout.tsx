@@ -67,7 +67,7 @@ export default function RootLayout({
     >
       <body className="antialiased font-sans">
         <Navbar />
-        <main className="md:w-[90%] mx-auto">
+        <main className="px-3 md:px-0 md:w-[90%] mx-auto">
           {children}
           <Footer />
         </main>
