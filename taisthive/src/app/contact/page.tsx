@@ -1,4 +1,6 @@
-import { nigerian_meal, black_chef } from '@/assets/images';
+import { nigerian_meal, black_chef, tray3 } from '@/assets/images';
+import { HeadBanner, FootBanner } from '@/components';
+import { JSX } from 'react';
 import Image from 'next/image';
 
 export async function generateMetadata() {
@@ -7,29 +9,15 @@ export async function generateMetadata() {
   };
 }
 
-export default function ContactPage() {
+export default function ContactPage(): JSX.Element {
   return (
     <article>
-      <section className="w-full h-[40vh] relative my-6 rounded-2xl overflow-hidden p-4 flex">
-        <h1
-          className="font-lobster text-3xl md:text-6xl self-center w-[50%] md:w-[25%] leading-relaxed
-        tracking-wider text-white bg-black bg-opacity-60 md:bg-opacity-10 p-4 rounded-lg font-bold"
-        >
-          <span className="text-primary font-pacifico tracking-widest">
-            Reach
-          </span>{' '}
-          out to{' '}
-          <span className="text-primary font-pacifico tracking-widest">Us</span>{' '}
-        </h1>
-        <Image
-          src={nigerian_meal}
-          alt="An image depicting a basic nigerian meal"
-          className="w-full h-full object-cover absolute -z-10 bg-opacity-40 top-0 left-0"
-        />
-      </section>
+      {/* Banner */}
+      <HeadBanner displayImage={nigerian_meal} message="Reach *Out *To *Us" />
 
-      <section className="flex h-fit md:h-[55vh] my-6 flex-col md:flex-row">
-        <div className="w-full md:w-1/2 mr-0 md:mr-2 h-full flex items-center rounded-2xl overflow-hidden relative">
+      {/* Contact Information */}
+      <section className="flex h-fit md:h-[55vh] my-6 md:my-8 lg:my-6 flex-col lg:flex-row">
+        <div className="w-full lg:w-1/2 mr-0 lg:mr-2 h-full flex items-center rounded-2xl overflow-hidden relative">
           <Image
             src={black_chef}
             alt="A black chef preparing a delicious cuisine"
@@ -39,12 +27,12 @@ export default function ContactPage() {
             className="absolute h-full w-full top-0 left-0 bg-gradient-to-b from-transparent via-[#ff6b6b4d]
           to-primary flex justify-start items-end text-left"
           >
-            <span className="font-display text-white text-xl md:text-3xl tracking-widest capitalize p-4 font-bold">
+            <span className="font-sans text-white text-xl md:text-3xl tracking-widest capitalize p-4 font-bold">
               contact information
             </span>
           </div>
         </div>
-        <div className="w-full md:w-3/4 ml-0 md:ml-4 h-full flex flex-col p-6">
+        <div className="w-full lg:w-3/4 ml-0 lg:ml-4 h-full flex flex-col p-6">
           <p className="font-lora text-lg md:text-xl md:h-1/3 h-fit text-gray-500 text-justify my-3 md:my-0">
             Discover the essence of culinary artistry with Taisthive. Our
             passion for food transcends the ordinary, bringing you flavors that
@@ -72,6 +60,44 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      {/* Contact Form */}
+      <section className="w-full my-6 flex flex-col">
+        <h2 className="font-lobster text-3xl md:text-6xl text-center text-black font-bold tracking-wider">
+          Get{' '}
+          <span className="font-pacifico text-primary tracking-widest font-bold">
+            in
+          </span>{' '}
+          Touch
+        </h2>
+        <form className="w-full md:w-3/4 mx-auto flex flex-col p-6">
+          <input
+            type="text"
+            placeholder="Full Name"
+            className="font-sans text-lg p-4 my-3 rounded-lg bg-gray-100 font-bold tracking-wider outline-none"
+          />
+          <input
+            type="email"
+            placeholder="Email Address"
+            className="font-sans text-lg p-4 my-3 rounded-lg bg-gray-100 font-bold tracking-wider outline-none"
+          />
+          <textarea
+            placeholder="Message"
+            className="font-sans text-lg p-4 my-3 rounded-lg bg-gray-100 font-bold tracking-wider outline-none
+            min-h-[20vh]"
+          />
+          <button
+            type="submit"
+            className="font-sans text-lg p-4 my-3 rounded-[40px] bg-primary text-white font-bold
+          tracking-wider"
+          >
+            Send Message
+          </button>
+        </form>
+      </section>
+
+      {/* Foot Banner */}
+      <FootBanner displayImage={tray3} />
     </article>
   );
 }

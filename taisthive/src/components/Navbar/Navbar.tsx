@@ -54,7 +54,7 @@ export default function Navbar(): JSX.Element {
 
   return (
     <>
-      <nav className="flex justify-around items-center p-2 shadow-sm">
+      <nav className="flex justify-around items-center p-2 shadow-sm fixed top-0 left-0 w-full bg-white z-50">
         {/* Logo */}
         <span className="text-4xl tracking-wider leading-loose flex-1 flex justify-center items-center">
           <span className="font-pacifico text-primary">taist</span>
@@ -109,6 +109,9 @@ export default function Navbar(): JSX.Element {
           </button>
         </div>
       </nav>
+
+      {/* Spacer */}
+      <div className="h-[100px]" />
 
       {/* Sidebar */}
       {active && <SideBar setActive={setActive} />}

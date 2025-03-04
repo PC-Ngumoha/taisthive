@@ -8,10 +8,6 @@ export default {
   ],
   theme: {
     extend: {
-      opacity: {
-        '20': '0.2',
-        '80': '0.8',
-      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

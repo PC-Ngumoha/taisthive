@@ -7,7 +7,7 @@ import {
   Lobster_Two,
   Lora,
 } from 'next/font/google';
-import { Navbar, Footer } from './components';
+import { Navbar, Footer } from '../components';
 import './globals.css';
 
 const openSans = Open_Sans({
