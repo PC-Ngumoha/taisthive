@@ -19,7 +19,7 @@ export default function HeadBanner({
   }, [message]);
 
   return (
-    <section className="w-full h-[40vh] md:h-[30vh] lg:h-[40vh] relative my-6 rounded-2xl overflow-hidden p-4 flex">
+    <section className="w-full h-[40vh] md:h-[30vh] lg:h-[40vh] relative my-6 rounded-3xl overflow-hidden p-4 flex">
       <h1
         className="font-lobster text-3xl md:text-6xl self-center w-[50%] md:w-[25%] leading-relaxed
         tracking-wider text-white bg-black bg-opacity-60 md:bg-opacity-10 p-4 rounded-lg font-bold"

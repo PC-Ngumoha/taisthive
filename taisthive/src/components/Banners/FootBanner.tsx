@@ -9,7 +9,7 @@ export default function FootBanner({
   displayImage: string | StaticImageData;
 }): JSX.Element {
   return (
-    <section className="w-full h-[60vh] relative my-8 rounded-2xl overflow-hidden p-4">
+    <section className="w-full h-[60vh] relative my-8 rounded-3xl overflow-hidden p-4">
       <div
         className="w-full h-full flex absolute top-0 left-0 bg-gradient-to-t
             from-transparent to-[#FF6B6B] items-center lg:items-start"
