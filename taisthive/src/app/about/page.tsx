@@ -1,5 +1,11 @@
 import { HeadBanner, FootBanner } from '@/components';
-import { nigerian_meal2, tray2, folake, cooking } from '@/assets/images';
+import {
+  nigerian_meal2,
+  tray2,
+  folake,
+  cooking,
+  // cooks2,
+} from '@/assets/images';
 import { type JSX } from 'react';
 import { MdLiveTv } from 'react-icons/md';
 import { LuChefHat } from 'react-icons/lu';
@@ -209,6 +215,19 @@ export default function AboutPage(): JSX.Element {
             </span>
           </div>
         </div>
+      </section>
+
+      {/* Core Values */}
+      <section className="h-[70vh] w-full rounded-3xl overflow-hidden my-12">
+        {/* Display Image */}
+        <Image
+          src="https://i.ibb.co/DmVDpn0/cooks.jpg"
+          alt="Black chefs cooking a meal"
+          height={100}
+          width={100}
+          className="w-full h-full object-cover"
+          unoptimized
+        />
       </section>
 
       {/* Foot Banner */}
