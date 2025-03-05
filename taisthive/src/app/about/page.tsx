@@ -1,9 +1,10 @@
 import { HeadBanner, FootBanner } from '@/components';
-import { nigerian_meal2, tray2 } from '@/assets/images';
+import { nigerian_meal2, tray2, folake, cooking } from '@/assets/images';
 import { type JSX } from 'react';
 import { MdLiveTv } from 'react-icons/md';
 import { LuChefHat } from 'react-icons/lu';
 import { SlGlobe } from 'react-icons/sl';
+import { RiKnifeLine } from 'react-icons/ri';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -51,21 +52,45 @@ export default function AboutPage(): JSX.Element {
         className="h-[180vh] md:h-[70vh] lg:h-[90vh] grid md:grid-cols-2 md:grid-rows-4 lg:grid-cols-4
         lg:grid-rows-5 gap-4 grid-cols-1 grid-rows-9"
       >
-        <div className="bg-gray-100 p-4 row-span-2 md:row-span-1 md:col-span-2 lg:col-span-3 lg:row-span-2">
-          1
+        <div
+          className="p-4 row-span-2 md:row-span-1 md:col-span-2 lg:col-span-3 lg:row-span-2
+        flex flex-col justify-between relative"
+        >
+          <h3
+            className="w-[80%] lg:w-[60%] p-2 text-2xl md:text-3xl lg:text-5xl font-sans font-bold tracking-wider
+          mt-10 md:mt-0"
+          >
+            We believe food holds{' '}
+            <em className="text-primary">transformative</em> power.
+          </h3>
+          <p className="w-full p-2 font-sans tracking-widest text-gray-500 text-sm lg:text-md">
+            Taisthive is more than a recipe platform; it&quot;s a vibrant
+            community celebrating culinary diversity. We connect home cooks and
+            food enthusiasts from every corner of the globe. Share your passion,
+            discover new techniques, and experience the richness of world
+            cuisine.
+          </p>
+
+          <div
+            className="absolute top-2 right-2 bg-black text-white w-fit p-3 flex items-center
+          rounded-3xl shadow"
+          >
+            <span className="capitalize">our history</span>
+            <LuChefHat className="text-xl ml-2 text-secondary" />
+          </div>
         </div>
 
         {/* 2nd Card — Jump Links */}
         <div className="row-span-2 lg:row-span-3 flex flex-col justify-end">
           <div
             className="flex flex-col justify-between items-center gap-6 p-4 h-full w-full lg:h-[90%] rounded-3xl
-          overflow-hidden bg-gray-100"
+          overflow-hidden bg-gray-50"
           >
             {jumpLinks.map((link) => (
               <Link
                 key={link.id}
                 href={link.url}
-                className="bg-white w-full flex-1 p-1 flex items-center rounded-2xl shadow hover:bg-gray-100
+                className="bg-white w-full flex-1 p-1 flex items-center rounded-2xl shadow hover:bg-gray-50
                 hover:shadow-none duration-700 ease-in-out"
               >
                 <link.icon className="text-primary inline-block w-1/4 font-bold text-xl" />
@@ -79,19 +104,64 @@ export default function AboutPage(): JSX.Element {
             ))}
           </div>
         </div>
-        <div className="bg-gray-100 p-4 lg:row-span-3">3</div>
 
-        {/* 4th Card */}
+        {/* 3rd Card */}
+        <div className="lg:row-span-3 flex flex-col justify-end">
+          <div
+            className="h-full lg:h-[75%] w-full rounded-3xl overflow-hidden bg-primary-dark text-white
+          flex flex-col justify-end"
+          >
+            {/* Comment */}
+            <span className="block w-full p-2 text-2xl lg:text-5xl font-lobster text-center tracking-wide font-bold">
+              &quot;Taisthive makes cooking so easy.&quot;
+            </span>
+            {/* Commenter Avatar */}
+            <div className="flex p-4 justify-center">
+              <Image
+                src={folake}
+                alt="female nigerian user avatar"
+                className="w-[50px] h-auto rounded-full mr-2"
+              />
+              <div className="w-3/5 capitalize">
+                <h3 className="font-bold font-sans tracking-wider">
+                  Folake Abiodun
+                </h3>
+                <span className="text-secondary-light">Master Chef 2025</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 4th Card — Cook showcase card */}
         <div
-          className="bg-gray-100 p-4 row-start-7 row-span-2 md:row-start-2 md:col-start-2
-        lg:row-span-3 lg:col-start-4"
+          className="row-start-7 row-span-2 md:row-start-2 md:col-start-2
+        lg:row-span-3 lg:col-start-4 rounded-3xl overflow-hidden relative"
         >
-          4
+          <Image
+            src={cooking}
+            alt="depicting a person cooking"
+            className="w-full h-full object-cover"
+          />
+          <div
+            className="absolute left-0 top-0 w-full h-full bg-gray-600 bg-opacity-10 flex flex-col
+          justify-between"
+          >
+            <div className="w-full flex justify-end p-2">
+              <div className="bg-black h-fit rounded-full p-4 text-secondary text-xl shadow">
+                <LuChefHat />
+              </div>
+            </div>
+
+            <div className="bg-secondary-light text-black w-fit m-4 rounded-3xl p-3 flex items-center">
+              <RiKnifeLine className="text-primary mr-2" />
+              <span className="font-sans">Easy to follow recipes</span>
+            </div>
+          </div>
         </div>
 
         {/* 5th Card — Learn from the masters */}
         <div
-          className="bg-gray-100 row-start-1 row-span-2 md:row-span-1 lg:col-start-1
+          className="row-start-1 row-span-2 md:row-span-1 lg:col-start-1
         lg:row-start-1 lg:row-span-full rounded-3xl overflow-hidden relative"
         >
           {/* Display Video */}
