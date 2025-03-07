@@ -245,7 +245,7 @@ export default function AboutPage(): JSX.Element {
       </section>
 
       {/* Core Values */}
-      <section className="h-[90vh] lg:h-[70vh] w-full rounded-3xl overflow-hidden my-12 relative">
+      <section className="h-[90vh] md:h-[70vh] w-full rounded-3xl overflow-hidden my-12 relative">
         {/* Display Image */}
         <Image
           src="https://i.ibb.co/DmVDpn0/cooks.jpg"
@@ -257,23 +257,23 @@ export default function AboutPage(): JSX.Element {
         />
 
         {/* Overlay */}
-        <div className="absolute top-0 left-0 w-full h-full bg-gray-700 flex flex-col">
-          <div className="lg:flex-1 p-4 w-full">
+        <div className="absolute top-0 left-0 w-full h-full bg-gray-700 bg-opacity-40 flex flex-col">
+          <div className="md:flex-1 p-4 w-full">
             <h2
-              className="text-white w-full lg:w-[30%] h-fit text-3xl lg:text-5xl capitalize tracking-wider font-sans font-bold
-            leading-relaxed"
+              className="text-white w-full md:w-[50%] lg:w-[30%] h-fit text-3xl md:text-5xl
+              capitalize tracking-wider font-sans font-bold leading-relaxed"
             >
-              Values that{' '}
+              What makes{' '}
               <span className="text-primary font-lobster tracking-widest">
-                shape
+                Us
               </span>{' '}
-              Taisthive
+              Different ?
             </h2>
           </div>
-          <div className="flex-1 flex flex-col lg:flex-row">
+          <div className="lg:flex-1 flex flex-col items-center lg:flex-row">
             <div
-              className="h-fit w-full lg:h-full lg:w-2/5 flex justify-center items-center
-            lg:justify-start lg:items-end pl-4 py-4"
+              className="h-fit w-full lg:h-full lg:w-2/5 flex justify-center
+            md:justify-start md:items-center lg:items-end p-6 md:p-14 lg:pl-4 lg:py-4"
             >
               <button className="bg-black text-secondary h-fit w-fit p-4 rounded-3xl shadow capitalize flex items-center">
                 Join our chef community
@@ -283,10 +283,13 @@ export default function AboutPage(): JSX.Element {
                 />
               </button>
             </div>
-            <div className="w-3/5 pt-6 pl-6 bg-white rounded-tl-3xl">
-              <div className="bg-gray-100 h-full w-full flex rounded-3xl">
+            <div
+              className="w-[90%] lg:w-3/5 p-2 md:pt-6 md:px-6 lg:pr-0 bg-white rounded-3xl md:rounded-t-3xl
+              md:rounded-b-none lg:rounded-tl-3xl lg:rounded-tr-none lg:rounded-b-none"
+            >
+              <div className="bg-gray-100 h-full w-full flex rounded-3xl flex-col md:flex-row">
                 {coreValues.map((value) => (
-                  <div key={value.id} className="flex-1 py-6 px-5">
+                  <div key={value.id} className="flex-1 p-3 lg:py-6 lg:px-5">
                     <div
                       className="bg-white rounded-full p-2 w-fit h-fit flex items-center justify-center
                     mb-6 text-xl"
