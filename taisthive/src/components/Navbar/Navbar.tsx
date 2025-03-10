@@ -58,7 +58,7 @@ export default function Navbar(): JSX.Element {
         {/* Logo */}
         <span
           className="text-4xl tracking-wider leading-loose flex-1 flex justify-center md:justify-start
-        items-center ml-0 md:ml-8 lg:ml-16"
+        items-center ml-0 md:ml-8 lg:ml-16 cursor-pointer"
         >
           <span className="font-pacifico text-primary">taist</span>
           <span className="ml-1 font-bold font-lobster">hive</span>

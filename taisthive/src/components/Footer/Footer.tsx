@@ -23,34 +23,6 @@ export default function Footer() {
     },
   ];
 
-  const socialLinks = [
-    {
-      id: 1,
-      name: 'Linkedin',
-      url: 'https://www.linkedin.com/in/chukwuemeka-ngumoha-95a633194/',
-    },
-    {
-      id: 2,
-      name: 'Github',
-      url: 'https://github.com/PC-Ngumoha',
-    },
-    {
-      id: 3,
-      name: 'Twitter',
-      url: 'https://x.com/PNgumoha',
-    },
-    {
-      id: 4,
-      name: 'Instagram',
-      url: 'https://www.instagram.com/ngumohaprince/',
-    },
-    {
-      id: 5,
-      name: 'Facebook',
-      url: 'https://web.facebook.com/prince.ngumoha.3',
-    },
-  ];
-
   // Help me keep track of whether we're on the active route or not
   const [activeRoutes, setActiveRoutes] = useState<boolean[]>(
     navLinks.map(() => false)
@@ -80,7 +52,7 @@ export default function Footer() {
       {/* Company Logo, Slogan & Copyright text*/}
       <section className="flex-1 flex flex-col justify-between">
         <div className="flex flex-col justify-between">
-          <span className="text-6xl">
+          <span className="text-6xl cursor-pointer">
             <span className="font-pacifico text-primary">taist</span>
             <span className="ml-1 font-bold font-lobster">hive</span>
           </span>
@@ -117,8 +89,35 @@ export default function Footer() {
           {/* Social Media */}
           <div className="flex-1 my-8 md:my-0">
             <h3 className="text-lg font-bold font-pacifico">Social Media</h3>
+            {/* List of social media links */}
             <ul className="text-sm">
-              {socialLinks.map((link) => (
+              {[
+                {
+                  id: 1,
+                  name: 'Linkedin',
+                  url: 'https://www.linkedin.com/in/chukwuemeka-ngumoha-95a633194/',
+                },
+                {
+                  id: 2,
+                  name: 'Github',
+                  url: 'https://github.com/PC-Ngumoha',
+                },
+                {
+                  id: 3,
+                  name: 'Twitter',
+                  url: 'https://x.com/PNgumoha',
+                },
+                {
+                  id: 4,
+                  name: 'Instagram',
+                  url: 'https://www.instagram.com/ngumohaprince/',
+                },
+                {
+                  id: 5,
+                  name: 'Facebook',
+                  url: 'https://web.facebook.com/prince.ngumoha.3',
+                },
+              ].map((link) => (
                 <li
                   key={link.id}
                   className="hover:underline mt-1 text-secondary"
