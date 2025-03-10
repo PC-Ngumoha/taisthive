@@ -56,13 +56,16 @@ export default function Navbar(): JSX.Element {
     <>
       <nav className="flex justify-around items-center p-2 shadow-sm fixed top-0 left-0 w-full bg-white z-50">
         {/* Logo */}
-        <span className="text-4xl tracking-wider leading-loose flex-1 flex justify-center items-center">
+        <span
+          className="text-4xl tracking-wider leading-loose flex-1 flex justify-center md:justify-start
+        items-center ml-0 md:ml-8 lg:ml-16"
+        >
           <span className="font-pacifico text-primary">taist</span>
           <span className="ml-1 font-bold font-lobster">hive</span>
         </span>
 
         {/* Nav Links */}
-        <ul className="hidden md:flex justify-around items-center flex-1 font-sans uppercase md:text-sm lg:text-md">
+        <ul className="hidden md:flex justify-around items-center w-1/4 font-sans uppercase md:text-sm lg:text-md">
           {navLinks.map((link, idx) => (
             <li
               key={link.id}

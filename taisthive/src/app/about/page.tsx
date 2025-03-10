@@ -1,11 +1,5 @@
 import { HeadBanner, FootBanner } from '@/components';
-import {
-  nigerian_meal2,
-  tray2,
-  folake,
-  cooking,
-  // cooks2,
-} from '@/assets/images';
+import { nigerian_meal2, tray2, folake, cooking } from '@/assets/images';
 import { type JSX } from 'react';
 import { MdLiveTv } from 'react-icons/md';
 import { LuChefHat } from 'react-icons/lu';
@@ -20,6 +14,7 @@ import {
   FaFacebookF,
   FaInstagram,
   FaLinkedinIn,
+  FaGithub,
 } from 'react-icons/fa6';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -31,53 +26,6 @@ export async function generateMetadata() {
 }
 
 export default function AboutPage(): JSX.Element {
-  const jumpLinks = [
-    {
-      id: 1,
-      title: 'live now',
-      body: 'chef adaugo nwora',
-      url: 'https://www.youtube.com/@chukwuemekangumoha8771',
-      icon: MdLiveTv,
-    },
-    {
-      id: 2,
-      title: 'contribute now',
-      body: 'share your recipe !',
-      url: '#',
-      icon: LuChefHat,
-    },
-    {
-      id: 3,
-      title: 'join community',
-      body: 'connect with us',
-      url: '/contact',
-      icon: SlGlobe,
-    },
-  ];
-
-  const coreValues = [
-    {
-      id: 1,
-      title: 'User focused',
-      description:
-        'Taisthive is user-focused: your culinary journey is our top priority.',
-      icon: RxPerson,
-    },
-    {
-      id: 2,
-      title: 'Diverse community',
-      description: 'Our diverse community celebrates global flavors.',
-      icon: BsCircleHalf,
-    },
-    {
-      id: 3,
-      title: 'Fun recipes',
-      description:
-        "Unleash your culinary creativity with Taisthive's collection of fun and imaginative recipes.",
-      icon: IoHeartOutline,
-    },
-  ];
-
   return (
     <article>
       {/* Head Banner */}
@@ -125,7 +73,29 @@ export default function AboutPage(): JSX.Element {
             className="flex flex-col justify-between items-center gap-6 p-4 h-full w-full lg:h-[90%] rounded-3xl
           overflow-hidden bg-gray-50"
           >
-            {jumpLinks.map((link) => (
+            {[
+              {
+                id: 1,
+                title: 'live now',
+                body: 'chef adaugo nwora',
+                url: 'https://www.youtube.com/@chukwuemekangumoha8771',
+                icon: MdLiveTv,
+              },
+              {
+                id: 2,
+                title: 'contribute now',
+                body: 'share your recipe !',
+                url: '#',
+                icon: LuChefHat,
+              },
+              {
+                id: 3,
+                title: 'join community',
+                body: 'connect with us',
+                url: '/contact',
+                icon: SlGlobe,
+              },
+            ].map((link) => (
               <Link
                 key={link.id}
                 href={link.url}
@@ -293,8 +263,31 @@ export default function AboutPage(): JSX.Element {
               className="w-[90%] lg:w-3/5 p-2 md:pt-6 md:px-6 lg:pr-0 bg-white rounded-3xl md:rounded-t-3xl
               md:rounded-b-none lg:rounded-tl-3xl lg:rounded-tr-none lg:rounded-b-none"
             >
+              {/* List of core values */}
               <div className="bg-gray-100 h-full w-full flex rounded-3xl flex-col md:flex-row">
-                {coreValues.map((value) => (
+                {[
+                  {
+                    id: 1,
+                    title: 'User focused',
+                    description:
+                      'Taisthive is user-focused: your culinary journey is our top priority.',
+                    icon: RxPerson,
+                  },
+                  {
+                    id: 2,
+                    title: 'Diverse community',
+                    description:
+                      'Our diverse community celebrates global flavors.',
+                    icon: BsCircleHalf,
+                  },
+                  {
+                    id: 3,
+                    title: 'Fun recipes',
+                    description:
+                      "Unleash your culinary creativity with Taisthive's collection of fun and imaginative recipes.",
+                    icon: IoHeartOutline,
+                  },
+                ].map((value) => (
                   <div key={value.id} className="flex-1 p-3 lg:py-6 lg:px-5">
                     <div
                       className="bg-white rounded-full p-2 w-fit h-fit flex items-center justify-center
@@ -321,8 +314,11 @@ export default function AboutPage(): JSX.Element {
       {/* Team members */}
       <section className="h-fit lg:h-[90vh] w-full my-12">
         <h2 className="text-3xl md:text-5xl font-bold text-center mb-8">
-          Meet Our Team
+          Meet{' '}
+          <span className="text-primary font-pacifico tracking-wider">Our</span>{' '}
+          Team
         </h2>
+        {/* List of team members */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
             {
@@ -331,9 +327,11 @@ export default function AboutPage(): JSX.Element {
               role: 'Head Chef',
               image: '/assets/images/Chukwuemeka.webp',
               social: {
-                twitter: 'https://twitter.com/johndoe',
-                linkedin: 'https://linkedin.com/in/johndoe',
-                instagram: 'https://instagram.com/johndoe',
+                twitter: 'https://x.com/PNgumoha',
+                linkedin:
+                  'https://www.linkedin.com/in/chukwuemeka-ngumoha-95a633194/',
+                instagram: 'https://www.instagram.com/ngumohaprince/',
+                github: 'https://github.com/PC-Ngumoha',
               },
             },
             {
@@ -345,6 +343,7 @@ export default function AboutPage(): JSX.Element {
                 twitter: 'https://twitter.com/janesmith',
                 linkedin: 'https://linkedin.com/in/janesmith',
                 instagram: 'https://instagram.com/janesmith',
+                facebook: '#',
               },
             },
             {
@@ -356,24 +355,25 @@ export default function AboutPage(): JSX.Element {
                 twitter: 'https://twitter.com/mikejohnson',
                 linkedin: 'https://linkedin.com/in/mikejohnson',
                 instagram: 'https://instagram.com/mikejohnson',
+                facebook: '#',
               },
             },
           ].map((member) => (
             <div
               key={member.id}
               className="relative group h-[70vh] w-auto md:h-[60vh] lg:h-full lg:w-full my-9 lg:my-0
-              rounded-3xl overflow-hidden"
+              rounded-3xl overflow-hidden border"
             >
               <Image
                 src={member.image}
                 alt={member.name}
-                className="w-full h-full object-cover rounded-3xl"
+                className="w-full h-[80%] object-cover"
                 width={100}
                 height={100}
                 unoptimized
               />
               <div
-                className="absolute h-full w-full inset-0 flex items-end
+                className="absolute inset-0 flex items-end
                 bg-[linear-gradient(to_bottom,transparent_80%,#FFA39E_20%)]
                 opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4"
               >
@@ -392,13 +392,15 @@ export default function AboutPage(): JSX.Element {
                   >
                     <FaLinkedinIn className="text-white text-4xl" />
                   </Link>
-                  <Link
-                    href={member.social.instagram}
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    <FaFacebookF className="text-white text-4xl" />
-                  </Link>
+                  {'facebook' in member.social && (
+                    <Link
+                      href={member.social.facebook as string}
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      <FaFacebookF className="text-white text-4xl" />
+                    </Link>
+                  )}
                   <Link
                     href={member.social.instagram}
                     target="_blank"
@@ -406,9 +408,18 @@ export default function AboutPage(): JSX.Element {
                   >
                     <FaInstagram className="text-white text-4xl" />
                   </Link>
+                  {'github' in member.social && (
+                    <Link
+                      href={member.social.github as string}
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      <FaGithub className="text-white text-4xl" />
+                    </Link>
+                  )}
                 </div>
               </div>
-              <div className="text-center mt-4">
+              <div className="text-center mt-4 h-[20%] w-auto">
                 <h3 className="text-xl font-bold">{member.name}</h3>
                 <p className="text-gray-500">{member.role}</p>
               </div>
