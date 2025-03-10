@@ -14,7 +14,13 @@ import { RiKnifeLine } from 'react-icons/ri';
 import { RxPerson } from 'react-icons/rx';
 import { BsCircleHalf } from 'react-icons/bs';
 import { IoHeartOutline } from 'react-icons/io5';
-import { FaArrowRight } from 'react-icons/fa6';
+import {
+  FaArrowRight,
+  FaXTwitter,
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+} from 'react-icons/fa6';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -309,6 +315,105 @@ export default function AboutPage(): JSX.Element {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Team members */}
+      <section className="h-fit lg:h-[90vh] w-full my-12">
+        <h2 className="text-3xl md:text-5xl font-bold text-center mb-8">
+          Meet Our Team
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[
+            {
+              id: 1,
+              name: 'Chukwuemeka Ngumoha',
+              role: 'Head Chef',
+              image: '/assets/images/Chukwuemeka.webp',
+              social: {
+                twitter: 'https://twitter.com/johndoe',
+                linkedin: 'https://linkedin.com/in/johndoe',
+                instagram: 'https://instagram.com/johndoe',
+              },
+            },
+            {
+              id: 2,
+              name: 'Chika Aluka',
+              role: 'Sous Chef',
+              image: '/assets/images/chika.webp',
+              social: {
+                twitter: 'https://twitter.com/janesmith',
+                linkedin: 'https://linkedin.com/in/janesmith',
+                instagram: 'https://instagram.com/janesmith',
+              },
+            },
+            {
+              id: 3,
+              name: 'Hassan Gimba',
+              role: 'Pastry Chef',
+              image: '/assets/images/hassan.webp',
+              social: {
+                twitter: 'https://twitter.com/mikejohnson',
+                linkedin: 'https://linkedin.com/in/mikejohnson',
+                instagram: 'https://instagram.com/mikejohnson',
+              },
+            },
+          ].map((member) => (
+            <div
+              key={member.id}
+              className="relative group h-[70vh] w-auto md:h-[60vh] lg:h-full lg:w-full my-9 lg:my-0
+              rounded-3xl overflow-hidden"
+            >
+              <Image
+                src={member.image}
+                alt={member.name}
+                className="w-full h-full object-cover rounded-3xl"
+                width={100}
+                height={100}
+                unoptimized
+              />
+              <div
+                className="absolute h-full w-full inset-0 flex items-end
+                bg-[linear-gradient(to_bottom,transparent_80%,#FFA39E_20%)]
+                opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4"
+              >
+                <div className="flex space-x-4 w-full justify-between">
+                  <Link
+                    href={member.social.twitter}
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <FaXTwitter className="text-white text-4xl" />
+                  </Link>
+                  <Link
+                    href={member.social.linkedin}
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <FaLinkedinIn className="text-white text-4xl" />
+                  </Link>
+                  <Link
+                    href={member.social.instagram}
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <FaFacebookF className="text-white text-4xl" />
+                  </Link>
+                  <Link
+                    href={member.social.instagram}
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <FaInstagram className="text-white text-4xl" />
+                  </Link>
+                </div>
+              </div>
+              <div className="text-center mt-4">
+                <h3 className="text-xl font-bold">{member.name}</h3>
+                <p className="text-gray-500">{member.role}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
