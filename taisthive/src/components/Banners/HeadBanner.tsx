@@ -19,29 +19,35 @@ export default function HeadBanner({
   }, [message]);
 
   return (
-    <section className="w-full h-[40vh] md:h-[30vh] lg:h-[40vh] relative my-6 rounded-3xl overflow-hidden p-4 flex">
-      <h1
-        className="font-lobster text-3xl md:text-6xl self-center w-[50%] md:w-[25%] leading-relaxed
-        tracking-wider text-white bg-black bg-opacity-60 md:bg-opacity-10 p-4 rounded-lg font-bold"
-      >
-        {messageChunks.map((chunk, idx) =>
-          idx % 2 === 0 ? (
-            <span key={idx}>{chunk}</span>
-          ) : (
-            <span
-              key={idx}
-              className="text-primary font-pacifico tracking-widest"
-            >
-              {chunk}
-            </span>
-          )
-        )}
-      </h1>
+    <section className="w-full h-[40vh] md:h-[30vh] lg:h-[40vh] relative my-6 rounded-3xl overflow-hidden flex">
       <Image
         src={displayImage}
         alt="An image depicting a basic nigerian meal"
-        className="w-full h-full object-cover absolute -z-10 bg-opacity-40 top-0 left-0"
+        className="w-full h-full object-cover"
       />
+      {/* Overlay */}
+      <div
+        className="bg-gray-200 bg-opacity-10 absolute w-full h-full top-0 left-0 flex items-center
+      md:justify-start justify-center p-4"
+      >
+        <h1
+          className="font-display text-3xl md:text-6xl self-center w-[80%] md:w-[50%] lg:w-[40%]
+        tracking-wider text-white bg-black bg-opacity-40 p-4 rounded-lg font-bold"
+        >
+          {messageChunks.map((chunk, idx) =>
+            idx % 2 === 0 ? (
+              <span key={idx}>{chunk}</span>
+            ) : (
+              <span
+                key={idx}
+                className="text-primary font-pacifico tracking-widest"
+              >
+                {chunk}
+              </span>
+            )
+          )}
+        </h1>
+      </div>
     </section>
   );
 }

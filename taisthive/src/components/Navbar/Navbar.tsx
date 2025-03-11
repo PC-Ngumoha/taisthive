@@ -153,7 +153,7 @@ function SideBar({
           {navLinks.map((link) => (
             <li
               key={link.id}
-              className="my-6 font-lobster font-bold text-lg flex w-full items-center"
+              className="my-6 font-sans font-bold text-lg flex w-full items-center"
             >
               <link.icon className="text-primary-light" />
               <Link href={link.url} className="flex-1 ml-2 tracking-widest">

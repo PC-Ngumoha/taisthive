@@ -1,23 +1,57 @@
 import { RxPerson } from 'react-icons/rx';
 import { BsCircleHalf } from 'react-icons/bs';
 import { IoHeartOutline } from 'react-icons/io5';
+import { tray1, fufu } from '@/assets/images';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Home() {
   return (
     <article>
       {/* Marketing hero section */}
       <section
-        className="h-[180vh] md:h-[90vh] lg:h-[110vh] grid grid-cols-1 grid-rows-10
-      md:grid-cols-2 lg:grid-cols-5 md:grid-rows-4 gap-4 my-4"
+        className="h-[200vh] md:h-[90vh] lg:h-[110vh] grid grid-cols-1 grid-rows-9
+      md:grid-cols-2 lg:grid-cols-5 md:grid-rows-4 gap-6 my-4"
       >
-        <div className="bg-gray-100 p-2 text-bold row-span-3 md:col-span-2 md:row-span-2 lg:col-span-5 lg:row-span-3">
-          1
+        {/* 1st Card - Food Banner */}
+        <div
+          className="bg-gray-100 text-bold row-span-3 md:col-span-2 md:row-span-2 lg:col-span-5 lg:row-span-3
+        rounded-3xl overflow-hidden relative"
+        >
+          <Image
+            src={tray1}
+            alt="tray of ingredients for meal"
+            height={100}
+            width={100}
+            className="h-full w-full object-cover"
+            unoptimized
+          />
+
+          {/* Overlay */}
+          <div
+            className="absolute h-full w-full top-0 left-0 bg-gray-200 bg-opacity-20 flex
+          justify-center md:justify-start items-center p-4"
+          >
+            <div className="bg-black bg-opacity-40 p-4 rounded-3xl w-[90%] md:w-[80%] lg:w-[60%] text-white">
+              <h1 className="text-4xl md:text-6xl lg:text-8xl mb-10 capitalize font-bold font-display tracking-wide">
+                Explore tastes{' '}
+                <span className="text-primary tracking-widest font-pacifico">
+                  so good
+                </span>
+              </h1>
+              <p className="font-sans font-bold text-xs md:text-sm tracking-widest">
+                Discover the flavors that will tantalize your taste buds. Dive
+                into a world of culinary delights that promise to excite and
+                inspire. Join us on a journey where every bite tells a story.
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* 2nd Card - Core Values */}
         <div
-          className="bg-gray-50 p-2 text-bold row-span-3 md:col-span-2 md:row-span-1 lg:col-span-3
-        h-full w-full flex rounded-3xl flex-col md:flex-row border-gray-100"
+          className="bg-gray-50 p-2 text-bold row-span-4 md:col-span-2 md:row-span-1 lg:col-span-3
+        h-full w-full flex rounded-3xl flex-col md:flex-row border-gray-200"
         >
           {[
             {
@@ -59,11 +93,41 @@ export default function Home() {
             </div>
           ))}
         </div>
-        <div className="bg-gray-100 p-2 text-bold row-span-2 md:row-span-1">
-          3
-        </div>
-        <div className="bg-gray-100 p-2 text-bold row-span-2 md:row-span-1">
-          4
+
+        {/* 3rd Card - Featured Recipe */}
+        <div
+          className="bg-gray-50 text-bold md:col-span-2 row-span-2 md:row-span-1 flex
+        flex-col md:flex-row rounded-3xl overflow-hidden"
+        >
+          <div className="flex-1 h-full rounded-3xl overflow-hidden">
+            <Image
+              src={fufu}
+              alt="plate of fufu"
+              width={100}
+              height={100}
+              className="w-full h-full object-auto"
+              unoptimized
+            />
+          </div>
+          <div className="flex-1 p-4 flex flex-col">
+            <div className="h-3/4">
+              <h2 className="font-sans text-lg uppercase tracking-wide font-bold text-primary">
+                Featured
+              </h2>
+              <span className="font-sans text-xl tracking-wider capitalize font-light">
+                Fufu & egusi soup
+              </span>
+            </div>
+            <div className="h-1/4">
+              <Link
+                href="#"
+                target="_blank"
+                className="underline capitalize font-medium tracking-wide text-gray-600"
+              >
+                See Recipe
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
     </article>

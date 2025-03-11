@@ -324,7 +324,7 @@ export default function AboutPage(): JSX.Element {
             {
               id: 1,
               name: 'Chukwuemeka Ngumoha',
-              role: 'Head Chef',
+              role: 'Developer',
               image: '/assets/images/Chukwuemeka.webp',
               social: {
                 twitter: 'https://x.com/PNgumoha',
