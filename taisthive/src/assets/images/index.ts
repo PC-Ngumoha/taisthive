@@ -7,6 +7,8 @@ import tray3 from './tray3.webp';
 import folake from './folake.webp';
 import cooking from './cooking.webp';
 import fufu from './fufu.webp';
+import maryam from './maryam.webp';
+import slicing from './slicing.webp';
 
 export {
   nigerian_meal,
@@ -17,5 +19,7 @@ export {
   tray3,
   folake,
   cooking,
-  fufu
+  fufu,
+  maryam,
+  slicing,
 };
