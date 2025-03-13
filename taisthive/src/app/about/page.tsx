@@ -18,6 +18,7 @@ import {
 } from 'react-icons/fa6';
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 export async function generateMetadata() {
   return {
@@ -39,6 +40,7 @@ export default function AboutPage(): JSX.Element {
         className="h-[180vh] md:h-[70vh] lg:h-[90vh] grid md:grid-cols-2 md:grid-rows-4 lg:grid-cols-4
         lg:grid-rows-5 gap-4 grid-cols-1 grid-rows-9"
       >
+        {/* Vision statement */}
         <div
           className="p-4 row-span-2 md:row-span-1 md:col-span-2 lg:col-span-3 lg:row-span-2
         flex flex-col justify-between relative"
@@ -67,7 +69,10 @@ export default function AboutPage(): JSX.Element {
           </div>
         </div>
 
-        {/* 2nd Card — Jump Links */}
+        {/* 2nd Card — Jump Links
+          Animation(s):
+          - TODO: Spring to bottom from top
+        */}
         <div className="row-span-2 lg:row-span-3 flex flex-col justify-end">
           <div
             className="flex flex-col justify-between items-center gap-6 p-4 h-full w-full lg:h-[90%] rounded-3xl
@@ -114,7 +119,10 @@ export default function AboutPage(): JSX.Element {
           </div>
         </div>
 
-        {/* 3rd Card */}
+        {/* 3rd Card
+          Animation(s):
+          - TODO: appear
+        */}
         <div className="lg:row-span-3 flex flex-col justify-end">
           <div
             className="h-full lg:h-[75%] w-full rounded-3xl overflow-hidden bg-primary-dark text-white
@@ -168,7 +176,10 @@ export default function AboutPage(): JSX.Element {
           </div>
         </div>
 
-        {/* 5th Card — Learn from the masters */}
+        {/* 5th Card — Learn from the masters
+          Animation(s):
+          - TODO: appear
+        */}
         <div
           className="row-start-1 row-span-2 md:row-span-1 lg:col-start-1
         lg:row-start-1 lg:row-span-full rounded-3xl overflow-hidden relative"
@@ -263,7 +274,10 @@ export default function AboutPage(): JSX.Element {
               className="w-[90%] lg:w-3/5 p-2 md:pt-6 md:px-6 lg:pr-0 bg-white rounded-3xl md:rounded-t-3xl
               md:rounded-b-none lg:rounded-tl-3xl lg:rounded-tr-none lg:rounded-b-none"
             >
-              {/* List of core values */}
+              {/* List of core values
+                Animation(s):
+                - TODO: spring up from bottom
+              */}
               <div className="bg-gray-100 h-full w-full flex rounded-3xl flex-col md:flex-row">
                 {[
                   {
@@ -313,12 +327,16 @@ export default function AboutPage(): JSX.Element {
 
       {/* Team members */}
       <section className="h-fit lg:h-[90vh] w-full my-12">
+        {/* Heading */}
         <h2 className="text-3xl md:text-5xl font-bold text-center mb-8">
           Meet{' '}
           <span className="text-primary font-pacifico tracking-wider">Our</span>{' '}
           Team
         </h2>
-        {/* List of team members */}
+        {/* List of team members
+          Animation(s):
+          - TODO: slide up from bottom
+        */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
             {

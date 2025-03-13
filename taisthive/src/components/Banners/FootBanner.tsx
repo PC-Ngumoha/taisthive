@@ -1,5 +1,6 @@
 import { JSX } from 'react';
 import Image, { type StaticImageData } from 'next/image';
+import { motion } from 'framer-motion';
 
 export default function FootBanner({
   message = "Let's create memories together",
@@ -22,6 +23,10 @@ export default function FootBanner({
         </h1>
 
         <div className="w-[80%] md:w-[50%] lg:w-1/5 h-fit flex flex-col items-center justify-center">
+          {/* button
+            Animation(s):
+            - TODO: slide in from left
+          */}
           <div className="bg-white w-[90%] h-[150px] my-4 rounded-2xl flex justify-center items-center">
             <button
               className="bg-primary p-4 font-bold text-white font-sans tracking-wider rounded-xl

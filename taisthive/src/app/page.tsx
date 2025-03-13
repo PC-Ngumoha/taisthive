@@ -8,6 +8,7 @@ import { SlGlobe } from 'react-icons/sl';
 import { tray1, fufu, slicing, maryam } from '@/assets/images';
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 export default function Home() {
   return (
@@ -17,7 +18,12 @@ export default function Home() {
         className="h-[200vh] md:h-[90vh] lg:h-[110vh] grid grid-cols-1 grid-rows-9
       md:grid-cols-2 lg:grid-cols-5 md:grid-rows-4 gap-6 my-2"
       >
-        {/* 1st Card - Food Banner */}
+        {/* 1st Card - Food Banner
+
+        Animation(s):
+        - TODO: expands on appearance
+        - TODO: Display text slides in from the left
+        */}
         <div
           className="bg-gray-100 text-bold row-span-3 md:col-span-2 md:row-span-2 lg:col-span-5 lg:row-span-3
         rounded-3xl overflow-hidden relative"
@@ -52,7 +58,11 @@ export default function Home() {
           </div>
         </div>
 
-        {/* 2nd Card - Core Values */}
+        {/* 2nd Card - Core Values
+
+        Animation(s):
+        - TODO: transition upward like a spring
+        */}
         <div
           className="bg-gray-50 p-2 text-bold row-span-4 md:col-span-2 md:row-span-1 lg:col-span-3
         h-full w-full flex rounded-3xl flex-col md:flex-row border-gray-200"
@@ -98,7 +108,10 @@ export default function Home() {
           ))}
         </div>
 
-        {/* 3rd Card - Featured Recipe */}
+        {/* 3rd Card - Featured Recipe
+          Animation(s):
+          - TODO: slides in from the right
+        */}
         <div
           className="bg-gray-50 text-bold md:col-span-2 row-span-2 md:row-span-1 flex
         flex-col md:flex-row rounded-3xl overflow-hidden"
@@ -137,7 +150,10 @@ export default function Home() {
 
       {/* Pitch section */}
       <section className="w-full h-fit my-4 p-4">
-        {/* Heading */}
+        {/* Heading
+          Animation(s):
+          - TODO: Should appear with a bit of a delay
+        */}
         <div className="w-[80%] md:w-[60%] lg:w-[40%] mx-auto flex flex-col justify-center items-center text-center">
           <h1 className="text-3xl md:text-5xl font-display font-bold tracking-wide text-gray-700">
             Nail your dishes with{' '}
@@ -156,7 +172,10 @@ export default function Home() {
           className="h-[150vh] md:h-[70vh] grid grid-cols-1 grid-rows-7 md:grid-cols-2 md:grid-rows-2
         lg:grid-cols-4 lg:grid-rows-1 gap-4 my-4"
         >
-          {/* Food Display card */}
+          {/* Food Display card
+            Animation(s):
+            - TODO: Slide in from the top
+          */}
           <div className="row-span-2 md:row-span-1 flex flex-col justify-start">
             <div className="relative rounded-3xl overflow-hidden h-full lg:h-[75%] lg:mt-8">
               <Image
@@ -182,7 +201,10 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Comment Card */}
+          {/* Comment Card
+            Animation(s):
+            - TODO: appear
+          */}
           <div className="flex flex-col justify-end">
             <div
               className="h-full md:h-[60%] w-full rounded-3xl overflow-hidden bg-primary-dark text-white
@@ -209,7 +231,10 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Jump Links Card */}
+          {/* Jump Links Card
+            Animation(s):
+            - TODO: Springs to the bottom from the top
+          */}
           <div className="row-span-2 md:row-span-1 flex flex-col justify-start lg:justify-end">
             <div className="flex flex-col justify-between items-center gap-6 p-4 h-full w-full md:h-[60%] rounded-3xl overflow-hidden bg-gray-50">
               {[
@@ -253,7 +278,10 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Live Video Demo Card */}
+          {/* Live Video Demo Card
+            Animation(s):
+            - TODO: Slides up from the bottom
+          */}
           <div className="bg-gray-100 row-span-2 md:row-span-1 relative rounded-3xl overflow-hidden">
             {/* Display Video */}
             <video

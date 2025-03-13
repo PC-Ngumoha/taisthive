@@ -2,6 +2,7 @@
 
 import Image, { type StaticImageData } from 'next/image';
 import { type JSX, useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 export default function HeadBanner({
   displayImage,
@@ -30,6 +31,10 @@ export default function HeadBanner({
         className="bg-gray-200 bg-opacity-10 absolute w-full h-full top-0 left-0 flex items-center
       md:justify-start justify-center p-4"
       >
+        {/* Heading
+          Animation(s):
+          - TODO: slide in from bottom with delay
+        */}
         <h1
           className="font-display text-3xl md:text-6xl self-center w-[80%] md:w-[50%] lg:w-[40%]
         tracking-wider text-white bg-black bg-opacity-40 p-4 rounded-lg font-bold"
