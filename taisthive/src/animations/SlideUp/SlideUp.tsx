@@ -2,10 +2,14 @@
 import React, { type JSX, useRef, useState, useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 
-export function ScrollDivInLeft({
+export default function SlideUp({
   children,
+  className = '',
+  delay = 0.5,
 }: {
-  children: React.ReactElement<HTMLElement>;
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
 }): JSX.Element {
   const ref = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(false);
@@ -20,7 +24,7 @@ export function ScrollDivInLeft({
         // Runs once: Is target elements intersection &
         if (entry.isIntersecting && !isInView) {
           setIsInView(true);
-          controls.start({ opacity: 1, x: 0 });
+          controls.start({ y: 0, opacity: 1 });
           observer.disconnect();
         }
       },
@@ -43,11 +47,15 @@ export function ScrollDivInLeft({
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, x: -100 }}
+      initial={{ y: 100, opacity: 0 }}
       animate={controls}
-      transition={{ duration: 0.5, ease: 'easeOut', delay: 0.2 }}
-      className={children.props.className}
+      transition={{
+        duration: 0.5,
+        ease: 'easeIn',
+        delay: delay,
+      }}
       ref={ref}
+      className={className}
     >
       {children}
     </motion.div>

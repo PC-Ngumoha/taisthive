@@ -1,8 +1,9 @@
 'use client';
 
 import Image, { type StaticImageData } from 'next/image';
-import { type JSX, useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { type JSX } from 'react';
+// import { motion } from 'framer-motion';
+import { SlideUp } from '@/animations';
 
 export default function HeadBanner({
   displayImage,
@@ -11,14 +12,6 @@ export default function HeadBanner({
   displayImage: string | StaticImageData;
   message?: string;
 }): JSX.Element {
-  const [messageChunks, setMessageChunks] = useState<string[]>([]);
-
-  // Split the message into chunks for better styling
-  useEffect(() => {
-    const chunks = message.split('*');
-    setMessageChunks(chunks);
-  }, [message]);
-
   return (
     <section className="w-full h-[40vh] md:h-[30vh] lg:h-[40vh] relative my-6 rounded-3xl overflow-hidden flex">
       <Image
@@ -33,25 +26,29 @@ export default function HeadBanner({
       >
         {/* Heading
           Animation(s):
-          - TODO: slide in from bottom with delay
+          - DONE: slide in from bottom with delay
         */}
-        <motion.h1
+        <SlideUp
+          delay={0.8}
           className="font-display text-3xl md:text-6xl self-center w-[80%] md:w-[50%] lg:w-[40%]
         tracking-wider text-white bg-black bg-opacity-40 p-4 rounded-lg font-bold"
         >
-          {messageChunks.map((chunk, idx) =>
-            idx % 2 === 0 ? (
-              <span key={idx}>{chunk}</span>
-            ) : (
-              <span
-                key={idx}
-                className="text-primary font-pacifico tracking-widest"
-              >
-                {chunk}
-              </span>
-            )
-          )}
-        </motion.h1>
+          {message
+            .trim()
+            .split('*') // Split at occurrence of *
+            .map((chunk, idx) =>
+              idx % 2 === 0 ? (
+                <span key={idx}>{chunk}</span>
+              ) : (
+                <span
+                  key={idx}
+                  className="text-primary font-pacifico tracking-widest"
+                >
+                  {chunk}
+                </span>
+              )
+            )}
+        </SlideUp>
       </div>
     </section>
   );

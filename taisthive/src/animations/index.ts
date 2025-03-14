@@ -1,5 +1,11 @@
-import {ScrollDivInLeft} from './ScrollInLeft/ScrollInLeft';
+import SlideInLeft from './SlideInLeft/SlideInLeft';
+import SlideInRight from './SlideInRight/SlideInRight';
+import SlideUp from './SlideUp/SlideUp';
+import SlideDown from './SlideDown/SlideDown';
 
 export {
-  ScrollDivInLeft,
-}
+  SlideInLeft,
+  SlideInRight,
+  SlideUp,
+  SlideDown
+};

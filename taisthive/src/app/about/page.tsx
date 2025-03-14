@@ -18,7 +18,8 @@ import {
 } from 'react-icons/fa6';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+// import { motion } from 'framer-motion';
+import { SlideUp } from '@/animations';
 
 export async function generateMetadata() {
   return {
@@ -335,7 +336,7 @@ export default function AboutPage(): JSX.Element {
         </h2>
         {/* List of team members
           Animation(s):
-          - TODO: slide up from bottom
+          - DONE: slide up from bottom
         */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
@@ -376,9 +377,10 @@ export default function AboutPage(): JSX.Element {
                 facebook: '#',
               },
             },
-          ].map((member) => (
-            <div
+          ].map((member, idx) => (
+            <SlideUp
               key={member.id}
+              delay={0.2 + idx}
               className="relative group h-[70vh] w-auto md:h-[60vh] lg:h-full lg:w-full my-9 lg:my-0
               rounded-3xl overflow-hidden border"
             >
@@ -441,7 +443,7 @@ export default function AboutPage(): JSX.Element {
                 <h3 className="text-xl font-bold">{member.name}</h3>
                 <p className="text-gray-500">{member.role}</p>
               </div>
-            </div>
+            </SlideUp>
           ))}
         </div>
       </section>

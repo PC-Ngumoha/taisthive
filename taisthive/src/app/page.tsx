@@ -8,7 +8,7 @@ import { SlGlobe } from 'react-icons/sl';
 import { tray1, fufu, slicing, maryam } from '@/assets/images';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { SlideInLeft, SlideInRight, SlideDown, SlideUp } from '@/animations';
 
 export default function Home() {
   return (
@@ -16,13 +16,13 @@ export default function Home() {
       {/* Marketing hero section */}
       <section
         className="h-[200vh] md:h-[90vh] lg:h-[110vh] grid grid-cols-1 grid-rows-9
-      md:grid-cols-2 lg:grid-cols-5 md:grid-rows-4 gap-6 my-2"
+      md:grid-cols-2 lg:grid-cols-5 md:grid-rows-4 gap-6 my-4"
       >
         {/* 1st Card - Food Banner
 
         Animation(s):
         - TODO: expands on appearance
-        - TODO: Display text slides in from the left
+        - DONE: Display text slides in from the left
         */}
         <div
           className="bg-gray-100 text-bold row-span-3 md:col-span-2 md:row-span-2 lg:col-span-5 lg:row-span-3
@@ -43,12 +43,14 @@ export default function Home() {
           justify-center md:justify-start items-center p-4"
           >
             <div className="bg-black bg-opacity-40 p-4 rounded-3xl w-[90%] md:w-[80%] lg:w-[60%] text-white">
-              <h1 className="text-4xl md:text-6xl lg:text-8xl mb-10 capitalize font-bold font-display tracking-wide">
-                Explore tastes{' '}
-                <span className="text-primary tracking-widest font-pacifico">
-                  so good
-                </span>
-              </h1>
+              <SlideInLeft>
+                <h1 className="text-4xl md:text-6xl lg:text-8xl mb-10 capitalize font-bold font-display tracking-wide">
+                  Explore tastes{' '}
+                  <span className="text-primary tracking-widest font-pacifico">
+                    so good
+                  </span>
+                </h1>
+              </SlideInLeft>
               <p className="font-sans font-bold text-xs md:text-sm tracking-widest">
                 Discover the flavors that will tantalize your taste buds. Dive
                 into a world of culinary delights that promise to excite and
@@ -110,9 +112,9 @@ export default function Home() {
 
         {/* 3rd Card - Featured Recipe
           Animation(s):
-          - TODO: slides in from the right
+          - DONE: slides in from the right
         */}
-        <div
+        <SlideInRight
           className="bg-gray-50 text-bold md:col-span-2 row-span-2 md:row-span-1 flex
         flex-col md:flex-row rounded-3xl overflow-hidden"
         >
@@ -145,7 +147,7 @@ export default function Home() {
               </Link>
             </div>
           </div>
-        </div>
+        </SlideInRight>
       </section>
 
       {/* Pitch section */}
@@ -174,9 +176,9 @@ export default function Home() {
         >
           {/* Food Display card
             Animation(s):
-            - TODO: Slide in from the top
+            - DONE: Slide in from the top
           */}
-          <div className="row-span-2 md:row-span-1 flex flex-col justify-start">
+          <SlideDown className="row-span-2 md:row-span-1 flex flex-col justify-start">
             <div className="relative rounded-3xl overflow-hidden h-full lg:h-[75%] lg:mt-8">
               <Image
                 src={slicing}
@@ -199,7 +201,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </div>
+          </SlideDown>
 
           {/* Comment Card
             Animation(s):
@@ -280,9 +282,9 @@ export default function Home() {
 
           {/* Live Video Demo Card
             Animation(s):
-            - TODO: Slides up from the bottom
+            - DONE: Slides up from the bottom
           */}
-          <div className="bg-gray-100 row-span-2 md:row-span-1 relative rounded-3xl overflow-hidden">
+          <SlideUp className="bg-gray-100 row-span-2 md:row-span-1 relative rounded-3xl overflow-hidden">
             {/* Display Video */}
             <video
               width={100}
@@ -327,7 +329,7 @@ export default function Home() {
                 master great & tasty delicacies
               </span>
             </div>
-          </div>
+          </SlideUp>
         </section>
       </section>
 

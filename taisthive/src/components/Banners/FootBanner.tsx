@@ -2,7 +2,7 @@
 
 import { JSX } from 'react';
 import Image, { type StaticImageData } from 'next/image';
-import { ScrollDivInLeft } from '@/animations';
+import { SlideInLeft } from '@/animations';
 
 export default function FootBanner({
   message = "Let's create memories together",
@@ -27,18 +27,16 @@ export default function FootBanner({
         <div className="w-[80%] md:w-[50%] lg:w-1/5 h-fit flex flex-col items-center justify-center">
           {/* button
             Animation(s):
-            - TODO: slide in from left
+            - DONE: slide in from left
           */}
-          <ScrollDivInLeft>
-            <div className="bg-white w-[90%] h-[150px] my-4 rounded-2xl flex justify-center items-center">
-              <button
-                className="bg-primary p-4 font-bold text-white font-sans tracking-wider rounded-xl
+          <SlideInLeft className="bg-white w-[90%] h-[150px] my-4 rounded-2xl flex justify-center items-center">
+            <button
+              className="bg-primary p-4 font-bold text-white font-sans tracking-wider rounded-xl
                 shadow-lg w-[50%]"
-              >
-                Join Us !
-              </button>
-            </div>
-          </ScrollDivInLeft>
+            >
+              Join Us !
+            </button>
+          </SlideInLeft>
         </div>
       </div>
       <Image

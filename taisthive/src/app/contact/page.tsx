@@ -2,7 +2,8 @@ import { nigerian_meal, black_chef, tray3 } from '@/assets/images';
 import { HeadBanner, FootBanner } from '@/components';
 import { JSX } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+// import { motion } from 'framer-motion';
+import { SlideInLeft, SlideInRight } from '@/animations';
 
 export async function generateMetadata() {
   return {
@@ -20,9 +21,9 @@ export default function ContactPage(): JSX.Element {
       <section className="flex h-fit md:h-[55vh] my-6 md:my-8 lg:my-6 flex-col lg:flex-row">
         {/* Image
           Animation(s):
-          - TODO: slide in from left
+          - DONE: slide in from left
         */}
-        <div className="w-full lg:w-1/2 mr-0 lg:mr-2 h-full flex items-center rounded-2xl overflow-hidden relative">
+        <SlideInLeft className="w-full lg:w-1/2 mr-0 lg:mr-2 flex object-cover items-center rounded-2xl overflow-hidden relative">
           <Image
             src={black_chef}
             alt="A black chef preparing a delicious cuisine"
@@ -36,13 +37,13 @@ export default function ContactPage(): JSX.Element {
               contact information
             </span>
           </div>
-        </div>
+        </SlideInLeft>
 
         {/* Contact Details
           Animation(s):
-          - TODO: slide in from right
+          - DONE: slide in from right
         */}
-        <div className="w-full lg:w-3/4 ml-0 lg:ml-4 h-full flex flex-col p-6">
+        <SlideInRight className="w-full lg:w-3/4 ml-0 lg:ml-4 h-full flex flex-col p-6">
           <p className="font-lora text-lg md:text-xl md:h-1/3 h-fit text-gray-500 text-justify my-3 md:my-0">
             Discover the essence of culinary artistry with Taisthive. Our
             passion for food transcends the ordinary, bringing you flavors that
@@ -68,7 +69,7 @@ export default function ContactPage(): JSX.Element {
               info@taisthive.com
             </span>
           </div>
-        </div>
+        </SlideInRight>
       </section>
 
       {/* Contact Form */}
