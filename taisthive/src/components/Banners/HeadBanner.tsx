@@ -35,7 +35,7 @@ export default function HeadBanner({
           Animation(s):
           - TODO: slide in from bottom with delay
         */}
-        <h1
+        <motion.h1
           className="font-display text-3xl md:text-6xl self-center w-[80%] md:w-[50%] lg:w-[40%]
         tracking-wider text-white bg-black bg-opacity-40 p-4 rounded-lg font-bold"
         >
@@ -51,7 +51,7 @@ export default function HeadBanner({
               </span>
             )
           )}
-        </h1>
+        </motion.h1>
       </div>
     </section>
   );

@@ -1,6 +1,8 @@
+// 'use client';
+
 import { JSX } from 'react';
 import Image, { type StaticImageData } from 'next/image';
-import { motion } from 'framer-motion';
+import { ScrollDivInLeft } from '@/animations';
 
 export default function FootBanner({
   message = "Let's create memories together",
@@ -27,14 +29,16 @@ export default function FootBanner({
             Animation(s):
             - TODO: slide in from left
           */}
-          <div className="bg-white w-[90%] h-[150px] my-4 rounded-2xl flex justify-center items-center">
-            <button
-              className="bg-primary p-4 font-bold text-white font-sans tracking-wider rounded-xl
+          <ScrollDivInLeft>
+            <div className="bg-white w-[90%] h-[150px] my-4 rounded-2xl flex justify-center items-center">
+              <button
+                className="bg-primary p-4 font-bold text-white font-sans tracking-wider rounded-xl
                 shadow-lg w-[50%]"
-            >
-              Join Us !
-            </button>
-          </div>
+              >
+                Join Us !
+              </button>
+            </div>
+          </ScrollDivInLeft>
         </div>
       </div>
       <Image
