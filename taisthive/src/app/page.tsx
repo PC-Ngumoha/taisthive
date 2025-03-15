@@ -19,11 +19,7 @@ export default function Home() {
       md:grid-cols-2 lg:grid-cols-5 md:grid-rows-4 gap-6 my-4"
       >
         {/* 1st Card - Food Banner
-
-        Animation(s):
-        - TODO: expands on appearance
-        - DONE: Display text slides in from the left
-        */}
+         */}
         <div
           className="bg-gray-100 text-bold row-span-3 md:col-span-2 md:row-span-2 lg:col-span-5 lg:row-span-3
         rounded-3xl overflow-hidden relative"
@@ -61,10 +57,7 @@ export default function Home() {
         </div>
 
         {/* 2nd Card - Core Values
-
-        Animation(s):
-        - TODO: transition upward like a spring
-        */}
+         */}
         <div
           className="bg-gray-50 p-2 text-bold row-span-4 md:col-span-2 md:row-span-1 lg:col-span-3
         h-full w-full flex rounded-3xl flex-col md:flex-row border-gray-200"
@@ -90,8 +83,8 @@ export default function Home() {
                 "Unleash your culinary creativity with Taisthive's collection of fun and imaginative recipes.",
               icon: IoHeartOutline,
             },
-          ].map((value) => (
-            <div key={value.id} className="flex-1 p-2">
+          ].map((value, idx) => (
+            <SlideUp delay={idx + 0.2} key={value.id} className="flex-1 p-2">
               <div
                 className="bg-white rounded-full p-2 w-fit h-fit flex items-center justify-center
                               mb-2 text-xl"
@@ -106,14 +99,12 @@ export default function Home() {
                   {value.description}
                 </span>
               </div>
-            </div>
+            </SlideUp>
           ))}
         </div>
 
         {/* 3rd Card - Featured Recipe
-          Animation(s):
-          - DONE: slides in from the right
-        */}
+         */}
         <SlideInRight
           className="bg-gray-50 text-bold md:col-span-2 row-span-2 md:row-span-1 flex
         flex-col md:flex-row rounded-3xl overflow-hidden"
@@ -153,9 +144,7 @@ export default function Home() {
       {/* Pitch section */}
       <section className="w-full h-fit my-4 p-4">
         {/* Heading
-          Animation(s):
-          - TODO: Should appear with a bit of a delay
-        */}
+         */}
         <div className="w-[80%] md:w-[60%] lg:w-[40%] mx-auto flex flex-col justify-center items-center text-center">
           <h1 className="text-3xl md:text-5xl font-display font-bold tracking-wide text-gray-700">
             Nail your dishes with{' '}
@@ -175,9 +164,7 @@ export default function Home() {
         lg:grid-cols-4 lg:grid-rows-1 gap-4 my-4"
         >
           {/* Food Display card
-            Animation(s):
-            - DONE: Slide in from the top
-          */}
+           */}
           <SlideDown className="row-span-2 md:row-span-1 flex flex-col justify-start">
             <div className="relative rounded-3xl overflow-hidden h-full lg:h-[75%] lg:mt-8">
               <Image
@@ -204,10 +191,8 @@ export default function Home() {
           </SlideDown>
 
           {/* Comment Card
-            Animation(s):
-            - TODO: appear
-          */}
-          <div className="flex flex-col justify-end">
+           */}
+          <SlideDown delay={1.5} className="flex flex-col justify-end">
             <div
               className="h-full md:h-[60%] w-full rounded-3xl overflow-hidden bg-primary-dark text-white
                       flex flex-col justify-end lg:mb-12"
@@ -231,13 +216,14 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </div>
+          </SlideDown>
 
           {/* Jump Links Card
-            Animation(s):
-            - TODO: Springs to the bottom from the top
-          */}
-          <div className="row-span-2 md:row-span-1 flex flex-col justify-start lg:justify-end">
+           */}
+          <SlideDown
+            delay={2.0}
+            className="row-span-2 md:row-span-1 flex flex-col justify-start lg:justify-end"
+          >
             <div className="flex flex-col justify-between items-center gap-6 p-4 h-full w-full md:h-[60%] rounded-3xl overflow-hidden bg-gray-50">
               {[
                 {
@@ -278,13 +264,14 @@ export default function Home() {
                 </Link>
               ))}
             </div>
-          </div>
+          </SlideDown>
 
           {/* Live Video Demo Card
-            Animation(s):
-            - DONE: Slides up from the bottom
-          */}
-          <SlideUp className="bg-gray-100 row-span-2 md:row-span-1 relative rounded-3xl overflow-hidden">
+           */}
+          <SlideUp
+            delay={1.5}
+            className="bg-gray-100 row-span-2 md:row-span-1 relative rounded-3xl overflow-hidden"
+          >
             {/* Display Video */}
             <video
               width={100}

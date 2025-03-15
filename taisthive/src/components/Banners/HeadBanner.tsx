@@ -1,8 +1,5 @@
-'use client';
-
 import Image, { type StaticImageData } from 'next/image';
 import { type JSX } from 'react';
-// import { motion } from 'framer-motion';
 import { SlideUp } from '@/animations';
 
 export default function HeadBanner({
@@ -25,9 +22,7 @@ export default function HeadBanner({
       md:justify-start justify-center p-4"
       >
         {/* Heading
-          Animation(s):
-          - DONE: slide in from bottom with delay
-        */}
+         */}
         <SlideUp
           delay={0.8}
           className="font-display text-3xl md:text-6xl self-center w-[80%] md:w-[50%] lg:w-[40%]

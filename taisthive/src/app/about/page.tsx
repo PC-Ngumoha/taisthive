@@ -18,9 +18,9 @@ import {
 } from 'react-icons/fa6';
 import Image from 'next/image';
 import Link from 'next/link';
-// import { motion } from 'framer-motion';
 import { SlideUp } from '@/animations';
 
+// This will appear in the browser's title bar
 export async function generateMetadata() {
   return {
     title: 'Taisthive | About',
@@ -71,9 +71,7 @@ export default function AboutPage(): JSX.Element {
         </div>
 
         {/* 2nd Card — Jump Links
-          Animation(s):
-          - TODO: Spring to bottom from top
-        */}
+         */}
         <div className="row-span-2 lg:row-span-3 flex flex-col justify-end">
           <div
             className="flex flex-col justify-between items-center gap-6 p-4 h-full w-full lg:h-[90%] rounded-3xl
@@ -120,10 +118,8 @@ export default function AboutPage(): JSX.Element {
           </div>
         </div>
 
-        {/* 3rd Card
-          Animation(s):
-          - TODO: appear
-        */}
+        {/* 3rd Card - Comment card
+         */}
         <div className="lg:row-span-3 flex flex-col justify-end">
           <div
             className="h-full lg:h-[75%] w-full rounded-3xl overflow-hidden bg-primary-dark text-white
@@ -178,9 +174,7 @@ export default function AboutPage(): JSX.Element {
         </div>
 
         {/* 5th Card — Learn from the masters
-          Animation(s):
-          - TODO: appear
-        */}
+         */}
         <div
           className="row-start-1 row-span-2 md:row-span-1 lg:col-start-1
         lg:row-start-1 lg:row-span-full rounded-3xl overflow-hidden relative"
@@ -276,9 +270,7 @@ export default function AboutPage(): JSX.Element {
               md:rounded-b-none lg:rounded-tl-3xl lg:rounded-tr-none lg:rounded-b-none"
             >
               {/* List of core values
-                Animation(s):
-                - TODO: spring up from bottom
-              */}
+               */}
               <div className="bg-gray-100 h-full w-full flex rounded-3xl flex-col md:flex-row">
                 {[
                   {
@@ -302,8 +294,12 @@ export default function AboutPage(): JSX.Element {
                       "Unleash your culinary creativity with Taisthive's collection of fun and imaginative recipes.",
                     icon: IoHeartOutline,
                   },
-                ].map((value) => (
-                  <div key={value.id} className="flex-1 p-3 lg:py-6 lg:px-5">
+                ].map((value, idx) => (
+                  <SlideUp
+                    delay={idx + 0.2}
+                    key={value.id}
+                    className="flex-1 p-3 lg:py-6 lg:px-5"
+                  >
                     <div
                       className="bg-white rounded-full p-2 w-fit h-fit flex items-center justify-center
                     mb-6 text-xl"
@@ -318,7 +314,7 @@ export default function AboutPage(): JSX.Element {
                         {value.description}
                       </span>
                     </div>
-                  </div>
+                  </SlideUp>
                 ))}
               </div>
             </div>
@@ -335,9 +331,7 @@ export default function AboutPage(): JSX.Element {
           Team
         </h2>
         {/* List of team members
-          Animation(s):
-          - DONE: slide up from bottom
-        */}
+         */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
             {

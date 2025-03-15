@@ -1,5 +1,3 @@
-// 'use client';
-
 import { JSX } from 'react';
 import Image, { type StaticImageData } from 'next/image';
 import { SlideInLeft } from '@/animations';
@@ -26,9 +24,7 @@ export default function FootBanner({
 
         <div className="w-[80%] md:w-[50%] lg:w-1/5 h-fit flex flex-col items-center justify-center">
           {/* button
-            Animation(s):
-            - DONE: slide in from left
-          */}
+           */}
           <SlideInLeft className="bg-white w-[90%] h-[150px] my-4 rounded-2xl flex justify-center items-center">
             <button
               className="bg-primary p-4 font-bold text-white font-sans tracking-wider rounded-xl
