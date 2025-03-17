@@ -7,7 +7,6 @@ import {
   Lobster_Two,
   Lora,
 } from 'next/font/google';
-import { Navbar, Footer } from '../components';
 import './globals.css';
 
 const openSans = Open_Sans({
@@ -65,13 +64,7 @@ export default function RootLayout({
       className={`${openSans.variable} ${playfair.variable} ${montserrat.variable}
      ${pacifico.variable} ${lobsterTwo.variable} ${lora.variable}`}
     >
-      <body className="antialiased font-sans">
-        <Navbar />
-        <main className="px-3 md:px-0 md:w-[90%] mx-auto">
-          {children}
-          <Footer />
-        </main>
-      </body>
+      <body className="antialiased font-sans">{children}</body>
     </html>
   );
 }

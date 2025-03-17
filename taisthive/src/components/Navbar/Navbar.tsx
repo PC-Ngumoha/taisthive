@@ -93,16 +93,20 @@ export default function Navbar(): JSX.Element {
 
         {/* Auth Buttons */}
         <div className="flex-1 md:flex justify-end items-center pr-4 hidden">
-          <button className="bg-primary-light text-white font-sans font-bold mr-3 p-3 shadow rounded-sm">
+          <Link
+            href="/signin"
+            className="bg-primary-light text-white font-sans font-bold mr-3 p-3 shadow rounded-sm"
+          >
             Sign In
-          </button>
-          <button
+          </Link>
+          <Link
+            href="/signup"
             className="bg-transparent text-black border-primary-light border font-sans
         font-bold mr-3 p-3 shadow rounded-sm hover:bg-primary-light hover:text-white
         duration-700 ease-in-out"
           >
             Sign Up
-          </button>
+          </Link>
         </div>
 
         {/* Hamburger Menu */}
