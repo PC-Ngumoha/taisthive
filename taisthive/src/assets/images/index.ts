@@ -9,6 +9,8 @@ import cooking from './cooking.webp';
 import fufu from './fufu.webp';
 import maryam from './maryam.webp';
 import slicing from './slicing.webp';
+import berries_on_table from './strawberry_table.webp';
+import berries_on_table2 from './strawberry_table2.webp';
 
 export {
   nigerian_meal,
@@ -22,4 +24,6 @@ export {
   fufu,
   maryam,
   slicing,
+  berries_on_table,
+  berries_on_table2
 };
